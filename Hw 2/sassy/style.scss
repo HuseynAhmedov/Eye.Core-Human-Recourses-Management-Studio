@@ -1,0 +1,296 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+*
+{
+    box-sizing: border-box;
+}
+
+
+.navbar-main-container
+{
+    padding: 25px 0 ;
+    margin: 0 250px;
+    .row
+    {
+        align-items: center;
+        flex-direction: row;
+    }
+}
+.navbar-links
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    ul 
+    {
+        display: flex;
+        padding: 0 !important;
+        margin: 0 !important;
+        
+    }
+    .navbar-link
+    {
+        position: relative;
+        padding: 0 9px;
+        a 
+        {
+            transition: .2s all;
+            color: black;
+            text-decoration: none;
+            font-size: 20px;
+            i 
+            {
+                font-size: 16px;
+            }
+        }
+        .sub-links
+        {
+            position: absolute;
+            display: none;
+        }
+    }
+    .navbar-link:hover
+    {
+        a 
+        {
+            color: rgb(255,90,60);
+        }
+    }
+}
+.navbar-btns
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 10px;
+    div 
+    {
+        padding: 10px;
+        transition: .2s ;
+        i 
+        {
+            font-size: 25px;
+        }
+    }
+    div:hover
+    {
+        background-color: rgb(255,90,60) ;
+    }
+}
+.navbar-top-main-container
+{
+    background-color: rgb(11,44,61);
+    position: relative;
+    .row 
+    {
+        margin: 0px 250px;
+        align-items: center;
+        div 
+        {
+            padding: 0px !important;
+        }
+    }
+    .navbar-contacts
+    {
+        ul 
+        {
+            padding: 10px 0 ;
+            margin: 0px !important;
+            display: flex;
+            li
+            {
+                padding: 0 10px;
+                a 
+                {
+                    transition: .2s all;
+                    color: rgb(255, 255, 255);
+                    text-decoration: none;
+                    i 
+                    {
+                        color: rgb(255,90,60);
+                    }
+                }
+            }
+            li:hover
+            {
+                a
+                {
+                    color: rgb(255,90,60);
+                }
+            }
+        }
+    }
+    .navbar-social-media
+    {
+        ul 
+        {
+            column-gap: 10px;
+            padding: 10px 0 ;
+            margin: 0px !important;
+            display: flex;
+            justify-content: flex-end;
+            li 
+            {
+                a 
+                {
+                    color: white;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+.header-top-btn
+{
+    display: flex;
+    justify-content: flex-end;
+    a 
+    {
+        padding: 10px;
+        color: white;
+        text-decoration: none;
+        background-color: rgb(255,90,60);
+    }
+}
+
+.focus-main-container
+{
+    background-color: rgb(241,245,247);
+    .focus-header
+    {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        .focus-small-header-text
+        {
+            font-size: 16px;
+            color: #ff5a3c;
+            background-color: #ff5a3c40;
+            border-radius: 32%;
+            padding: 1px 15px;
+        }
+        .focus-main-header-text
+        {
+            font-size: 44px;
+            font-weight: bold;
+        }
+    }
+    .focus-cards-container
+    {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        .card
+        {
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            position: relative;
+            margin: 15px;
+            .card-info
+            {
+                padding: 10px;
+                .card-header-link
+                {
+                    a 
+                    {
+                        color: black;
+                        text-decoration: none;
+                        font-weight: bold;
+                        font-size: 24px;
+                        transition: .2s all;
+                    }
+                }
+                .card-header-link:hover
+                {
+                    a 
+                    {
+                        color: tomato;
+                    }
+                }
+                .card-description-text
+                {
+                    color: #5c727d;
+                    font-size: 14px;
+                    text-align: center;
+                }
+                .card-btn
+                {
+                    color: #5c727d;
+                    font-size: 14px;
+                    text-decoration: none;
+                    transition: .2s all;
+                }
+                .card-btn:hover
+                {
+                    color: tomato;
+                }
+            }
+        }
+        .card:hover
+        {
+            transition: .3s all;
+        }
+        .card:hover::after
+        {
+            position: absolute;
+            content: " ";
+            width: 100%;
+            background-color: tomato;
+            height: 10px;
+            bottom: 0;
+        }
+    }
+}
+
