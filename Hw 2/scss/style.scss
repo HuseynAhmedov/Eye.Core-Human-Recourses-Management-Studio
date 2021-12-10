@@ -1,3 +1,4 @@
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -29,7 +30,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-    overflow-x: hidden;
+    overflow-x: hidden ;
 	line-height: 1;
 }
 ol, ul {
@@ -48,31 +49,61 @@ table {
 	border-spacing: 0;
 }
 
-* 
+*
 {
     box-sizing: border-box;
 }
 
-.main-box 
+.cards-main-con
 {
-    margin: 50px;
-    background-color: whitesmoke;
-    border: 1px solid black;
-    height: 500px;
-    display: flex;
-    flex-direction: row;
-    .image-box
+    .row 
     {
-        border-right: solid 1px black;
-        height: 100%;
-    }
-    .text-box
-    {
-        height: 100%;
+        display: flex;
+        flex-direction: row;
+        row-gap: 10px;
+        justify-content: center;
+        .card 
+        {
+            img 
+            {
+                width: 100%;
+                height: 242px;
+            }
+            .card-body
+            {
+                h5 
+                {
+
+                }
+                p 
+                {
+
+                } 
+                a 
+                {
+
+                }
+            }
+        }
     }
 }
-.image-item
+.wishlist-con
 {
-    width: 100% !important;
-    height: 100px !important;
+    position: relative;
+    i 
+    {
+        font-size: 28px;
+    }
+    sub 
+    {
+        top: 0;
+        right: -9px;
+        font-size: 16px;
+        position: absolute;
+    }
+}
+.on-wishlist 
+{
+    border-color: rgb(255, 47, 47) !important ;
+    background-color: rgb(255, 47, 47) !important;
 }
