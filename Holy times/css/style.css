@@ -1,0 +1,188 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  width: 1200px;
+}
+
+.prayer-time-main-container {
+  background-color: #181a1b;
+}
+
+.prayer-time-main-container .row .welcome-header-con {
+  padding: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.prayer-time-main-container .row .welcome-header-con h2 {
+  color: white;
+  font-size: 70px;
+}
+
+.prayer-time-main-container .row .welcome-header-con .todays-date-con {
+  padding: 10px 0;
+}
+
+.prayer-time-main-container .row .welcome-header-con .todays-date-con span {
+  font-size: 32px;
+  color: white;
+  margin-right: 10px;
+}
+
+.prayer-time-main-container .row .welcome-header-con .todays-date-con .todays-date-text {
+  font-size: 32px;
+  font-weight: 600;
+  color: #3e3eff;
+}
+
+.prayer-time-main-container .row .welcome-header-con .clock-con {
+  margin: 1rem 0;
+}
+
+.prayer-time-main-container .row .welcome-header-con .todays-prayer-time-con {
+  background-color: #363636;
+}
+
+.prayer-time-main-container .row .welcome-header-con .todays-prayer-time-con a {
+  -webkit-transition: .2s all;
+  transition: .2s all;
+  background-color: #363636;
+}
+
+.prayer-time-main-container .row .welcome-header-con .todays-prayer-time-con a div h5 {
+  color: white;
+}
+
+.prayer-time-main-container .row .welcome-header-con .todays-prayer-time-con a p {
+  color: white;
+}
+
+.prayer-time-main-container .row .welcome-header-con .todays-prayer-time-con a:hover {
+  background-color: #3e3eff;
+}
+
+.month-prayer-main-container {
+  background-color: #181a1b;
+}
+
+.month-prayer-main-container .row {
+  padding: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.month-prayer-main-container .row .month-now-container .mothn-now-txt {
+  text-align: center;
+  color: white;
+  font-size: 70px;
+}
+
+.month-prayer-main-container .row .prayer-month-time-list {
+  background-color: #363636;
+}
+
+.month-prayer-main-container .row .prayer-month-time-list .month-day-con {
+  background-color: #363636;
+}
+
+.month-prayer-main-container .row .prayer-month-time-list .month-day-con .month-day {
+  color: white;
+  font-size: 33px;
+}
+
+.month-prayer-main-container .row .prayer-month-time-list .prayer-times-con {
+  background-color: #363636;
+}
+
+.month-prayer-main-container .row .prayer-month-time-list .prayer-times-con ul li .time-name {
+  color: white;
+  margin-right: 20px;
+  font-size: 21px;
+  font-weight: 500;
+}
+
+.month-prayer-main-container .row .prayer-month-time-list .prayer-times-con ul li .prayer-time-txt {
+  color: white;
+}
+/*# sourceMappingURL=style.css.map */
