@@ -20,9 +20,13 @@ namespace Pustok.Models
         public bool Availability { get; set; }
         public int RewardPoint { get; set; }
         public string Code { get; set; }
+        public bool Featured { get; set; }
+        public bool New { get; set; }
         public string Brand { get; set; }
         public List<ProductImage> productImageList { get; set; }
         public List<Comment> commentsList { get; set; }
+        public  List<Tag> TagsList { get; set; }
+        public List<ProductTag> productTags { get; set; }
 
     }
 }

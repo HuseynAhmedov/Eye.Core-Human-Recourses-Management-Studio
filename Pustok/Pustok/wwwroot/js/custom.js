@@ -409,6 +409,23 @@ jQuery(document).ready(function($) {
             easingType: 'linear',
             scrollSpeed: 900,
         });
+
+        $(document).on("click", ".single-eye-btn", function () {
+
+            let id = $(this).attr("data-id");
+
+            fetch(`/home/modal/${id}`)
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data)
+                    $("#detailModal .modal-content").html(data)
+                })
+
+
+
+            $("#detailModal").modal("show")
+        })
+
     })(jQuery);
 
     /*--

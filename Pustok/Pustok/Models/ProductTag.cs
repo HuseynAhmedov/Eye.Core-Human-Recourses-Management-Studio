@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 
 namespace Pustok.Models
 {
-    public class ProductImage
+    public class ProductTag
     {
         public int Id { get; set; }
         public Product product { get; set; }
-        public int productID { get; set; }
-        public string Source { get; set; }
-        public bool MainImage { get; set; }
-        public bool HoverImage { get; set; }
+        public int productId { get; set; }
+        public Tag tag { get; set; }
+        public int tagId { get; set; }
     }
 }

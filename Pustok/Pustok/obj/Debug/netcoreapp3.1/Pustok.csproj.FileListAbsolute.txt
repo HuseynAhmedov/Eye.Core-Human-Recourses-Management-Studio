@@ -146,3 +146,9 @@ C:\Users\Huseyn\source\repos\Pustok\Pustok\bin\Debug\netcoreapp3.1\zh-Hans\Micro
 C:\Users\Huseyn\source\repos\Pustok\Pustok\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Huseyn\source\repos\Pustok\Pustok\obj\Debug\netcoreapp3.1\Razor\Views\Shop\Index.cshtml.g.cs
 C:\Users\Huseyn\source\repos\Pustok\Pustok\obj\Debug\netcoreapp3.1\Razor\Views\Product\Index.cshtml.g.cs
+C:\Users\Huseyn\source\repos\Pustok\Pustok\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_TabMenu.cshtml.g.cs
+C:\Users\Huseyn\source\repos\Pustok\Pustok\obj\Debug\netcoreapp3.1\Razor\Views\Shared\ProductModal.cshtml.g.cs
+C:\Users\Huseyn\source\repos\Pustok\Pustok\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Huseyn\source\repos\Pustok\Pustok\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Huseyn\source\repos\Pustok\Pustok\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\Huseyn\source\repos\Pustok\Pustok\obj\Debug\netcoreapp3.1\Pustok.csproj.AssemblyReference.cache

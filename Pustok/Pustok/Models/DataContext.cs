@@ -18,6 +18,9 @@ namespace Pustok.Models
         public DbSet<Slide> slides { get; set; }
         public DbSet<Brand> brands { get; set; }
         public DbSet<Comment> comments { get; set; }
+        public DbSet<Tag> tags { get; set; }
+        public DbSet<ProductTag> productTags { get; set; }
+        public DbSet<PromotionBottom> bottomPromotions { get; set; }
 
     }
 }
