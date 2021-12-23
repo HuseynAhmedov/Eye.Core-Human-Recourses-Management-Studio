@@ -15,10 +15,10 @@
                 <div class="product-details-info pl-lg--30 ">
                     <p class="tag-block">
                         Tags:
-                        @*foreach (ProductTag item in Model.productTagsList)
+                        @foreach (ProductTag item in Model.productTags)
                         {
-                            <a href="#">@item</a>
-                        }*@
+                            <a href="#">@item.tag.Name @{ if (Model.productTags.IndexOf(item) != Model.productTags.Count() -1 ){ Html.Raw(" , "); }}</a>
+                        }
                     </p>
                     <h3 class="product-title">@Model.Title</h3>
                     <ul class="list-unstyled">

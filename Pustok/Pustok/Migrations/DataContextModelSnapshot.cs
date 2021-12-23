@@ -246,7 +246,12 @@ namespace Pustok.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("tags");
                 });
@@ -281,7 +286,7 @@ namespace Pustok.Migrations
             modelBuilder.Entity("Pustok.Models.ProductTag", b =>
                 {
                     b.HasOne("Pustok.Models.Product", "product")
-                        .WithMany("productTagsList")
+                        .WithMany("productTags")
                         .HasForeignKey("productId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -291,6 +296,13 @@ namespace Pustok.Migrations
                         .HasForeignKey("tagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Pustok.Models.Tag", b =>
+                {
+                    b.HasOne("Pustok.Models.Product", null)
+                        .WithMany("TagsList")
+                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }

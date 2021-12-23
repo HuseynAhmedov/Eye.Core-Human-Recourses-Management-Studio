@@ -36,15 +36,10 @@ namespace Pustok.Controllers
 
         public ActionResult Modal(int id )
         {
-            Product product = _context.products.FirstOrDefault(x => x.Id == id);
-            product.productTags = _context.productTags.Where(y => y.productId == id).ToList();
-            product.productImageList = _context.productImages.Where(j => j.productID == id).ToList();
-            //foreach (ProductTag item in product.productTags)
-            //{
-            //    product.TagsList.Add(_context.tags.FirstOrDefault(x=> x.Id == item.tagId));
-            //}
-            //productID yazmadigim halsa productID column exception verir
+            Product product = _context.products.Include(x => x.productTags).ThenInclude(pr=> pr.tag).Include(x => x.productImageList).FirstOrDefault(x => x.Id == id);
             return PartialView("ProductModal", product);
         }
+
+
     }
 }

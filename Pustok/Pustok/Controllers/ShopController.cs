@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Pustok.Models;
 using Pustok.ViewModels;
 using System;
@@ -16,6 +17,7 @@ namespace Pustok.Controllers
         {
             this._context = context;
         }
+
 
         public ActionResult Index()
         {
@@ -46,6 +48,45 @@ namespace Pustok.Controllers
         {
             TempData["filterID"] = id;
            return RedirectToAction("Index");
+        }
+
+        public ActionResult AddToBasket(int id)
+        {
+            if( _context.products.FirstOrDefault(x=> x.Id == id) == null)
+            {
+                return NotFound();
+            }
+
+            List<BasketItemVM> basketItemList = new List<BasketItemVM>();
+            string cookieStr = HttpContext.Request.Cookies["BasketItems"];
+            if(cookieStr != null)
+            {
+                basketItemList = JsonConvert.DeserializeObject<List<BasketItemVM>>(cookieStr);
+            }
+
+            BasketItemVM item = basketItemList.FirstOrDefault(x => x.product.Id == id);
+
+            if (item == null)
+            {
+                item = new BasketItemVM
+                {
+                    product = _context.products.FirstOrDefault(x => x.Id == id),
+                    Id = id,
+                    Count = 1
+                };
+                //item.product.productImageList = _context.productImages.Where(x => x.productID == id).ToList();
+                basketItemList.Add(item);
+            }
+            else
+            {
+                item.Count++;
+            }
+
+            var bookIdsStr = JsonConvert.SerializeObject(basketItemList);
+
+            HttpContext.Response.Cookies.Append("BasketItems", bookIdsStr);
+
+            return Ok(basketItemList);
         }
     }
 }

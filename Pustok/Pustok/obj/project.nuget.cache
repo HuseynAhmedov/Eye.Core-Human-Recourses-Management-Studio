@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XpqlpSsCpKmrYd23qW5G+ydzX33jE/6kF0LMzqXqKw3cUmh+dwua5NWX9Y7/l6/lxNH4vIqkQqQ/nWqA4tYGzw==",
+  "dgSpecHash": "5KVU/EK8vMkFoMWnkQ9OrtTgeUodksZGfRSjbrcDgW+/aWca/2+VSZix2i5UnAGwOaYZMFjfkVbDdtrxFil4XQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Huseyn\\source\\repos\\Pustok\\Pustok\\Pustok.csproj",
   "expectedPackageFiles": [
@@ -57,7 +57,7 @@
     "C:\\Users\\Huseyn\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Huseyn\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\Huseyn\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\Huseyn\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\Huseyn\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Huseyn\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\Huseyn\\.nuget\\packages\\nuget.frameworks\\4.7.0\\nuget.frameworks.4.7.0.nupkg.sha512",
     "C:\\Users\\Huseyn\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
