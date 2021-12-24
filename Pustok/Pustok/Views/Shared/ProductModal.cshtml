@@ -8,16 +8,16 @@
             <div class="col-lg-5">
                 <!-- Product Details Slider Big Image-->
                 <div class="single-slide">
-                    <img src="~/image/products/@Model.productImageList.FirstOrDefault(x=> x.MainImage == true).Source" alt="">
+                    <img src="~/image/products/@Model.ProductImages.FirstOrDefault(x=> x.MainImage == true).Source" alt="">
                 </div>
             </div>
             <div class="col-lg-7 mt--30 mt-lg--30">
                 <div class="product-details-info pl-lg--30 ">
                     <p class="tag-block">
                         Tags:
-                        @foreach (ProductTag item in Model.productTags)
+                        @foreach (ProductTag item in Model.ProductTags)
                         {
-                            <a href="#">@item.tag.Name @{ if (Model.productTags.IndexOf(item) != Model.productTags.Count() -1 ){ Html.Raw(" , "); }}</a>
+                            <a href="#">@item.Tag.Name @{ if (Model.ProductTags.IndexOf(item) != Model.ProductTags.Count() -1 ){ Html.Raw(" , "); }}</a>
                         }
                     </p>
                     <h3 class="product-title">@Model.Title</h3>

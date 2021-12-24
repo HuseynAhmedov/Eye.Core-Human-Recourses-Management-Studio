@@ -17,12 +17,12 @@ namespace Pustok.Controllers
         }
         public ActionResult Index( int id )
         {
-            List<Brand> brands = _context.brands.ToList();
+            List<Brand> brands = _context.Brands.ToList();
             ViewBag.brands = brands;
 
-            Product product = _context.products.FirstOrDefault(x => x.Id == id);
-            product.productImageList = _context.productImages.Where(x => x.productID == id).ToList();
-            product.commentsList = _context.comments.Where(x => x.productID == id).ToList();
+            Product product = _context.Products.FirstOrDefault(x => x.Id == id);
+            product.ProductImages = _context.ProductImages.Where(x => x.ProductID == id).ToList();
+            product.Comments = _context.Comments.Where(x => x.ProductID == id).ToList();
             return View(product);
         }
     }

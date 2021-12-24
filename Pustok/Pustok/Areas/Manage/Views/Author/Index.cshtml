@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model AuthorVM
+
+<a asp-area="manage" asp-controller="author" asp-action="create"><button type="button" class="btn btn-primary" style="margin:15px">Create new Author</button></a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">FullName</th>
+            <th scope="col">Product Count</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Author item in Model.Authors)
+        {
+            int rowNum = Model.Authors.IndexOf(item) + 1;
+           <tr>
+              <th scope="row">@rowNum</th>
+              <td>@item.Id</td>
+              <td>@item.Name</td>
+              <td>@item.Products.Count()</td>
+              <td><button type="button" class="btn btn-primary">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
+           </tr>
+        }
+    </tbody>
+</table>
+

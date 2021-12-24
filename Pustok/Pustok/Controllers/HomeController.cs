@@ -21,22 +21,22 @@ namespace Pustok.Controllers
 
         public ActionResult Index()
         {
-            List<Brand> brands = _context.brands.ToList();
+            List<Brand> brands = _context.Brands.ToList();
             ViewBag.brands = brands;
             HomeVM homeVM = new HomeVM
             {
-                slidesList = _context.slides.ToList(),
-                FeaturedProductList = _context.products.Include(x => x.productImageList).Where(x => x.Featured == true).ToList(),
-                NewProductList = _context.products.Include(x => x.productImageList).Where(x => x.New == true).ToList(),
-                DiscountProductList = _context.products.Include(x => x.productImageList).Where(x => x.PriceDiscount > 0).ToList(),
-                promotionBottomList = _context.bottomPromotions.ToList()
+                slidesList = _context.Slides.ToList(),
+                FeaturedProductList = _context.Products.Include(x => x.ProductImages).Where(x => x.Featured == true).ToList(),
+                NewProductList = _context.Products.Include(x => x.ProductImages).Where(x => x.New == true).ToList(),
+                DiscountProductList = _context.Products.Include(x => x.ProductImages).Where(x => x.PriceDiscount > 0).ToList(),
+                promotionBottomList = _context.BottomPromotions.ToList()
             };
             return View (homeVM);
         }
 
         public ActionResult Modal(int id )
         {
-            Product product = _context.products.Include(x => x.productTags).ThenInclude(pr=> pr.tag).Include(x => x.productImageList).FirstOrDefault(x => x.Id == id);
+            Product product = _context.Products.Include(x => x.ProductTags).ThenInclude(pr=> pr.Tag).Include(x => x.ProductImages).FirstOrDefault(x => x.Id == id);
             return PartialView("ProductModal", product);
         }
 

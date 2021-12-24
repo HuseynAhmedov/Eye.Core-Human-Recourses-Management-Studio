@@ -351,7 +351,7 @@
               "swipe": false,
               "asNavFor": ".product-slider-nav"
               }'>
-                    @foreach (ProductImage item in Model.productImageList)
+                    @foreach (ProductImage item in Model.ProductImages)
                     {
                         <div class="single-slide">
                             <img src="~/image/products/@item.Source" alt="">
@@ -370,7 +370,7 @@
               "asNavFor": ".product-details-slider",
               "focusOnSelect": true
               }'>
-                    @foreach (ProductImage item in Model.productImageList)
+                    @foreach (ProductImage item in Model.ProductImages)
                     {
                         <div class="single-slide">
                             <img src="~/image/products/@item.Source" alt="">
@@ -416,7 +416,7 @@
                             }
                         </div>
                         <div class="review-widget">
-                            <a href="#">(@Model.commentsList.Count() Reviews)</a> <span>|</span>
+                            <a href="#">(@Model.Comments.Count() Reviews)</a> <span>|</span>
                             <a href="#">Write a review</a>
                         </div>
                     </div>
@@ -458,7 +458,7 @@
                 <li class="nav-item">
                     <a class="nav-link" id="tab2" data-toggle="tab" href="#tab-2" role="tab"
                        aria-controls="tab-2" aria-selected="true">
-                        REVIEWS (@Model.commentsList.Count())
+                        REVIEWS (@Model.Comments.Count())
                     </a>
                 </li>
             </ul>
@@ -475,7 +475,7 @@
                     <div class="review-wrapper">
                         <h2 class="title-lg mb--20">1 REVIEW FOR AUCTOR GRAVIDA ENIM</h2>
 
-                        @foreach (Comment item in Model.commentsList)
+                        @foreach (Comment item in Model.Comments)
                         {
                             <div class="review-comment mb--20">
                                 <div class="avatar">
@@ -496,7 +496,7 @@
                                         }
                                     </div>
                                     <h6 class="author">
-                                        @item.UserName – <span class="font-weight-400">@item.dateTime</span>
+                                        @item.UserName – <span class="font-weight-400">@item.DateTime</span>
                                     </h6>
                                     <p>
                                         @item.CommentText

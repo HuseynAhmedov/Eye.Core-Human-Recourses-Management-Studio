@@ -21,15 +21,15 @@ namespace Pustok.Controllers
 
         public ActionResult Index()
         {
-            List<Brand> brands = _context.brands.ToList();
+            List<Brand> brands = _context.Brands.ToList();
             ViewBag.brands = brands;
             if ( Convert.ToInt32(TempData["filterID"]) == 0)
             {
                 ShopVM shopVM = new ShopVM
                 {
-                    categoriesList = _context.categories.Include(x => x.productsList).ToList(),
-                    productsList = _context.products.Include(x => x.productImageList).ToList(),
-                    productImagesList = _context.productImages.ToList()
+                    categoriesList = _context.Categories.Include(x => x.Products).ToList(),
+                    productsList = _context.Products.Include(x => x.ProductImages).ToList(),
+                    productImagesList = _context.ProductImages.ToList()
                 };
                 return View(shopVM); 
             }
@@ -37,9 +37,9 @@ namespace Pustok.Controllers
             {
                 ShopVM shopVM = new ShopVM
                 {
-                    categoriesList = _context.categories.Include(x => x.productsList).ToList(),
-                    productsList = _context.products.Where(x=> x.categoryId == Convert.ToInt32(TempData["filterID"])).Include(x=> x.productImageList).ToList(),
-                    productImagesList = _context.productImages.ToList()
+                    categoriesList = _context.Categories.Include(x => x.Products).ToList(),
+                    productsList = _context.Products.Where(x=> x.CategoryId == Convert.ToInt32(TempData["filterID"])).Include(x=> x.ProductImages).ToList(),
+                    productImagesList = _context.ProductImages.ToList()
                 };
                 return View(shopVM);
             }
@@ -52,7 +52,7 @@ namespace Pustok.Controllers
 
         public ActionResult AddToBasket(int id)
         {
-            if( _context.products.FirstOrDefault(x=> x.Id == id) == null)
+            if( _context.Products.FirstOrDefault(x=> x.Id == id) == null)
             {
                 return NotFound();
             }
@@ -70,7 +70,7 @@ namespace Pustok.Controllers
             {
                 item = new BasketItemVM
                 {
-                    product = _context.products.FirstOrDefault(x => x.Id == id),
+                    product = _context.Products.FirstOrDefault(x => x.Id == id),
                     Id = id,
                     Count = 1
                 };
@@ -88,5 +88,38 @@ namespace Pustok.Controllers
 
             return Ok(basketItemList);
         }
+
+        public ActionResult deleteBasket(int id)
+        {
+            if (_context.Products.FirstOrDefault(x => x.Id == id) == null)
+            {
+                return NotFound();
+            }
+
+            List<BasketItemVM> basketItemList = new List<BasketItemVM>();
+            string cookieStr = HttpContext.Request.Cookies["BasketItems"];
+            if (cookieStr != null)
+            {
+                basketItemList = JsonConvert.DeserializeObject<List<BasketItemVM>>(cookieStr);
+            }
+            BasketItemVM basketItem = basketItemList.Find(x=> x.product.Id == id);
+            basketItemList.Remove(basketItem);
+
+            var bookIdsStr = JsonConvert.SerializeObject(basketItemList);
+            HttpContext.Response.Cookies.Append("BasketItems", bookIdsStr);
+            return Ok(basketItemList);
+        }
+
+        public ActionResult showBasket()
+        {
+            List<BasketItemVM> basketItemList = new List<BasketItemVM>();
+            string cookieStr = HttpContext.Request.Cookies["BasketItems"];
+            if (cookieStr != null)
+            {
+                basketItemList = JsonConvert.DeserializeObject<List<BasketItemVM>>(cookieStr);
+            }
+            return Ok(basketItemList);
+        }
+
     }
 }

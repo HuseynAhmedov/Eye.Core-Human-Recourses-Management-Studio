@@ -30,10 +30,10 @@
                 </div>
                 <div class="product-card--body">
                     <div class="card-image">
-                        <img src="image/products/@item.productImageList.FirstOrDefault(x=>x.MainImage == true).Source" alt="">
+                        <img src="image/products/@item.ProductImages.FirstOrDefault(x=>x.MainImage == true).Source" alt="">
                         <div class="hover-contents">
                             <a href="product-details.html" class="hover-image">
-                                <img src="image/products/@item.productImageList.FirstOrDefault(x=>x.HoverImage == true).Source" alt="">
+                                <img src="image/products/@item.ProductImages.FirstOrDefault(x=>x.HoverImage == true).Source" alt="">
                             </a>
                             <div class="hover-btns">
                                 <a href="#" class="single-btn add-to-cart-btn" data-id="@item.Id">

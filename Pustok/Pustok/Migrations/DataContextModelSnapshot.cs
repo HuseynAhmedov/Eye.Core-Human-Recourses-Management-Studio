@@ -19,6 +19,21 @@ namespace Pustok.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Pustok.Models.Author", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Authors");
+                });
+
             modelBuilder.Entity("Pustok.Models.Brand", b =>
                 {
                     b.Property<int>("Id")
@@ -31,7 +46,7 @@ namespace Pustok.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("brands");
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("Pustok.Models.Category", b =>
@@ -46,7 +61,7 @@ namespace Pustok.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("categories");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Pustok.Models.Comment", b =>
@@ -59,8 +74,14 @@ namespace Pustok.Migrations
                     b.Property<string>("CommentText")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
 
                     b.Property<int>("StarCount")
                         .HasColumnType("int");
@@ -68,17 +89,26 @@ namespace Pustok.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("dateTime")
-                        .HasColumnType("datetime2");
+                    b.HasKey("Id");
 
-                    b.Property<int>("productID")
-                        .HasColumnType("int");
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("Pustok.Models.Genre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("productID");
-
-                    b.ToTable("comments");
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("Pustok.Models.Product", b =>
@@ -94,17 +124,26 @@ namespace Pustok.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("AuthorId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Availability")
                         .HasColumnType("bit");
 
                     b.Property<string>("Brand")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Featured")
                         .HasColumnType("bit");
+
+                    b.Property<int?>("GenreId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("New")
                         .HasColumnType("bit");
@@ -127,14 +166,15 @@ namespace Pustok.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("categoryId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("categoryId");
+                    b.HasIndex("AuthorId");
 
-                    b.ToTable("products");
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("GenreId");
+
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Pustok.Models.ProductImage", b =>
@@ -150,17 +190,17 @@ namespace Pustok.Migrations
                     b.Property<bool>("MainImage")
                         .HasColumnType("bit");
 
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Source")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("productID")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("productID");
+                    b.HasIndex("ProductID");
 
-                    b.ToTable("productImages");
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("Pustok.Models.ProductTag", b =>
@@ -170,19 +210,19 @@ namespace Pustok.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("productId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("tagId")
+                    b.Property<int>("TagId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("productId");
+                    b.HasIndex("ProductId");
 
-                    b.HasIndex("tagId");
+                    b.HasIndex("TagId");
 
-                    b.ToTable("productTags");
+                    b.ToTable("ProductTags");
                 });
 
             modelBuilder.Entity("Pustok.Models.PromotionBottom", b =>
@@ -206,7 +246,7 @@ namespace Pustok.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("bottomPromotions");
+                    b.ToTable("BottomPromotions");
                 });
 
             modelBuilder.Entity("Pustok.Models.Slide", b =>
@@ -233,7 +273,7 @@ namespace Pustok.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("slides");
+                    b.ToTable("Slides");
                 });
 
             modelBuilder.Entity("Pustok.Models.Tag", b =>
@@ -253,47 +293,55 @@ namespace Pustok.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("tags");
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("Pustok.Models.Comment", b =>
                 {
-                    b.HasOne("Pustok.Models.Product", "product")
-                        .WithMany("commentsList")
-                        .HasForeignKey("productID")
+                    b.HasOne("Pustok.Models.Product", "Product")
+                        .WithMany("Comments")
+                        .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Pustok.Models.Product", b =>
                 {
-                    b.HasOne("Pustok.Models.Category", "category")
-                        .WithMany("productsList")
-                        .HasForeignKey("categoryId")
+                    b.HasOne("Pustok.Models.Author", null)
+                        .WithMany("Products")
+                        .HasForeignKey("AuthorId");
+
+                    b.HasOne("Pustok.Models.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Pustok.Models.Genre", "Genre")
+                        .WithMany()
+                        .HasForeignKey("GenreId");
                 });
 
             modelBuilder.Entity("Pustok.Models.ProductImage", b =>
                 {
-                    b.HasOne("Pustok.Models.Product", "product")
-                        .WithMany("productImageList")
-                        .HasForeignKey("productID")
+                    b.HasOne("Pustok.Models.Product", "Product")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Pustok.Models.ProductTag", b =>
                 {
-                    b.HasOne("Pustok.Models.Product", "product")
-                        .WithMany("productTags")
-                        .HasForeignKey("productId")
+                    b.HasOne("Pustok.Models.Product", "Product")
+                        .WithMany("ProductTags")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Pustok.Models.Tag", "tag")
-                        .WithMany("productTagsList")
-                        .HasForeignKey("tagId")
+                    b.HasOne("Pustok.Models.Tag", "Tag")
+                        .WithMany("ProductTags")
+                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -301,7 +349,7 @@ namespace Pustok.Migrations
             modelBuilder.Entity("Pustok.Models.Tag", b =>
                 {
                     b.HasOne("Pustok.Models.Product", null)
-                        .WithMany("TagsList")
+                        .WithMany("Tags")
                         .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618

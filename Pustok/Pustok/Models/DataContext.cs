@@ -12,15 +12,18 @@ namespace Pustok.Models
         {
 
         }
-        public DbSet<Product> products { get; set; }
-        public DbSet<Category> categories { get; set; }
-        public DbSet<ProductImage> productImages { get; set; }
-        public DbSet<Slide> slides { get; set; }
-        public DbSet<Brand> brands { get; set; }
-        public DbSet<Comment> comments { get; set; }
-        public DbSet<Tag> tags { get; set; }
-        public DbSet<ProductTag> productTags { get; set; }
-        public DbSet<PromotionBottom> bottomPromotions { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<Slide> Slides { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<ProductTag> ProductTags { get; set; }
+        public DbSet<PromotionBottom> BottomPromotions { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+
+        public DbSet<Author> Authors { get; set; }
 
     }
 }

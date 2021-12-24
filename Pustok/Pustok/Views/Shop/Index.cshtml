@@ -507,10 +507,10 @@
                                     </div>
                                     <div class="product-card--body">
                                         <div class="card-image">
-                                            <img src="~/image/products/@item.productImageList.FirstOrDefault(x=> x.MainImage == true).Source" alt="">
+                                            <img src="~/image/products/@item.ProductImages.FirstOrDefault(x=> x.MainImage == true).Source" alt="">
                                             <div class="hover-contents">
                                                 <a href="product-details.html" class="hover-image">
-                                                    <img src="~/image/products/@item.productImageList.FirstOrDefault(x=> x.MainImage == true).Source" alt="">
+                                                    <img src="~/image/products/@item.ProductImages.FirstOrDefault(x=> x.MainImage == true).Source" alt="">
                                                 </a>
                                                 <div class="hover-btns">
                                                     <a href="cart.html" class="single-btn">
@@ -538,7 +538,7 @@
                                 </div>
                                 <div class="product-list-content">
                                     <div class="card-image">
-                                        <img src="~/image/products/@item.productImageList.FirstOrDefault(x=> x.MainImage == true).Source" alt="">
+                                        <img src="~/image/products/@item.ProductImages.FirstOrDefault(x=> x.MainImage == true).Source" alt="">
                                     </div>
                                     <div class="product-card--body">
                                         <div class="product-header">
@@ -786,7 +786,7 @@
 
                             @foreach (Category item in Model.categoriesList)
                             {
-                                <li><a asp-controller="shop" asp-action="filter"  asp-route-id ="@item.Id" >@item.Name ( @item.productsList.Count )</a></li>
+                                <li><a asp-controller="shop" asp-action="filter"  asp-route-id ="@item.Id" >@item.Name ( @item.Products.Count )</a></li>
                             }
                             
                         </ul>
