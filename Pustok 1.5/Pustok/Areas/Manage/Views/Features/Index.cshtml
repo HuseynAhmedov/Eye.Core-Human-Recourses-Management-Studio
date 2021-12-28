@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@model FeaturesVM
+
+<a asp-area="manage" asp-controller="features" asp-action="create"><button type="button" class="btn btn-primary" style="margin:15px">Create new Feature</button></a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Header</th>
+            <th scope="col">Title</th>
+            <th scope="col">Logo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Feature item in Model.Features)
+        {
+            int rowNum = Model.Features.IndexOf(item) + 1;
+        <tr>
+            <th scope="row">@rowNum</th>
+            <td>@item.Id</td>
+            <td>@item.Header</td>
+            <td>@item.Title</td>
+            <td>@item.Logo</td>
+
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <a asp-controller="features" asp-action="info" asp-route-id="@item.Id"><button type="button" class="btn btn-info" style="border-top-right-radius: 0%;border-bottom-right-radius: 0%;">Info</button></a>
+                    <a asp-area="manage" asp-controller="features" asp-action="edit" asp-route-id="@item.Id"><button type="button" class="btn btn-warning" style=" border-radius: 0px !important;">Edit</button></a>
+                    <button type="button" class="btn btn-danger" onclick="DeleteAlert('features',@item.Id)">Delete</button>
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@{await Html.RenderPartialAsync("_PageNation", Model.pageNation);}
+
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
+}
+
+

@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+}
+@model Author
+
+<h2>Edit Author</h2>
+<form method="post" asp-action="Edit">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">FullName</span>
+        <input value="@Model.Name" asp-for="Name" type="text"  class="form-control" name="Name" id="Name" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
