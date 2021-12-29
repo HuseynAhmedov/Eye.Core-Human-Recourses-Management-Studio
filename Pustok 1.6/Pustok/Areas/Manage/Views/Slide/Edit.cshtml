@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+@model Slide
+
+<h2>New Slide</h2>
+<form method="post" asp-action="Edit" class="col-6" enctype="multipart/form-data">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Header</span>
+        <input value="@Model.Header" asp-for="Header" type="text" class="form-control" name="Header" id="Header" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <span class="text-danger" asp-validation-for="Header"></span>
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Sub Header</span>
+        <input value="@Model.HeaderSub" asp-for="HeaderSub" type="text" class="form-control" name="HeaderSub" id="HeaderSub" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <span class="text-danger" asp-validation-for="HeaderSub"></span>
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+        <input value="@Model.Title" asp-for="Title" type="text" class="form-control" name="Title" id="Title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <span class="text-danger" asp-validation-for="Title"></span>
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Button text</span>
+        <input value="@Model.Price" asp-for="Price" type="text" class="form-control" name="Price" id="Price" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <span class="text-danger" asp-validation-for="Price"></span>
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Order</span>
+        <input value="@Model.Order" asp-for="Order" type="number" min="0" class="form-control" name="Order" id="Order" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <span class="text-danger" asp-validation-for="Order"></span>
+    </div>
+    <div class="mb-3">
+        <label for="formFile" asp-for="FormImage" class="form-label">Slider Background Image</label>
+        <img width="300" src="~/@Model.BackgroundImg" style="display: block;margin-bottom: 1rem;" />
+        <input value="@Model.BackgroundImg" class="form-control" asp-for="FormImage" type="file" name="FormImage" id="FormImage">
+        <span class="text-danger" asp-validation-for="FormImage"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+}
