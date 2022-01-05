@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Info";
+}
+
+@model Setting
+
+<p>Id : @Model.Id</p>
+<p>Key : @Model.Key</p>
+<p>Type : @Model.Type</p>
+
+@{  if (Model.Type == ObjectType.Image)
+    {
+        <img src="~/@Model.Source" style="width : 300px" />
+    }
+    else
+    {
+        <p>Object : @Model.Source</p>
+    }
+}
+
+

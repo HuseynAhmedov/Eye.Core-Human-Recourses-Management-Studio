@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+}
+
+@model PortfolioCard
+
+<h2>New Portfolio</h2>
+<form method="post" asp-action="create" class="col-6" enctype="multipart/form-data">
+    <div class="input-group mb-3">
+        <label asp-for="Header" class="input-group-text" id="inputGroup-sizing-default">Header</label>
+        <input asp-for="Header" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <span class="text-danger" asp-validation-for="Header"></span>
+    </div>
+    <div class="input-group mb-3">
+        <label asp-for="Article" class="input-group-text" id="inputGroup-sizing-default">Article</label>
+        <textarea asp-for="Article" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"></textarea>
+        <span class="text-danger" asp-validation-for="Article"></span>
+    </div>
+    <div class=" mb-3">
+        <label for="formFile" asp-for="FormImage" class="form-label">Card Image</label>
+        <input class="form-control" asp-for="FormImage" type="file">
+        <span class="text-danger" asp-validation-for="FormImage"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Portfolio</button>
+</form>
