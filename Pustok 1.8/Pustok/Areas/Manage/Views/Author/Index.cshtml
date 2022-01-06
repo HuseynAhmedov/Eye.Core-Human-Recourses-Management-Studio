@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model AuthorVM
+
+<a asp-area="manage" asp-controller="author" asp-action="create"><button type="button" class="btn btn-primary" style="margin:15px">Create new Author</button></a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">FullName</th>
+            <th scope="col">Image</th>
+            <th scope="col">Product Count</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Author item in Model.Authors)
+        {
+            int rowNum = Model.Authors.IndexOf(item) + 1;
+        <tr>
+            <th scope="row">@rowNum</th>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>
+                @{ if (item.Image != null)
+                   {
+                        <img width="100" src="~/@item.Image" />
+                   } 
+                 }
+            </td>
+            <td>@item.Products.Count()</td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <a asp-controller="author" asp-action="info" asp-route-id="@item.Id"><button type="button" class="btn btn-info" style="border-top-right-radius: 0%;border-bottom-right-radius: 0%;">Info</button></a>
+                    <a asp-area="manage" asp-controller="author" asp-action="edit" asp-route-id="@item.Id"><button type="button" class="btn btn-warning" style=" border-radius: 0px !important;">Edit</button></a>
+                    <button type="button" class="btn btn-danger" onclick="DeleteAlert('author',@item.Id)">Delete</button>
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@{await Html.RenderPartialAsync("_PageNation", Model.pageNation);}
+
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
+}
