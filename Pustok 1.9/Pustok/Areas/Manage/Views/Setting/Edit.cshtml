@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@model Setting
+
+<h2>Edit Genre</h2>
+<form method="post" asp-action="Edit">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Item</span>
+        <input value="@Model.Object" asp-for="Object" type="text" class="form-control" name="Object" id="Object" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <span class="text-danger" asp-validation-for="Object"></span>
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Item Key</span>
+        <input value="@Model.Key" asp-for="Key" type="text" class="form-control" name="Key" id="Key" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <span class="text-danger" asp-validation-for="Key"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

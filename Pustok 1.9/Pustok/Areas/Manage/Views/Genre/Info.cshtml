@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "Info";
+}
+
+@model Genre
+<ul>
+    <li>Id : @Model.Id</li>
+    <li>Name : @Model.Name</li>
+    <li>Product count : @Model.Products.Count()</li>
+</ul>
+
