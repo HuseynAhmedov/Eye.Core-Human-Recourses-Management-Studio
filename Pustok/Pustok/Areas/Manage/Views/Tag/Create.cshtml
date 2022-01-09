@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+}
+
+@model Tag
+
+<h2>New Genre</h2>
+<form method="post" asp-action="NewTag">
+    <div class="input-group mb-3 col-6">
+        <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+        <input asp-for="Name" type="text" class="form-control" name="Name" id="Name" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Tag</button>
+</form>
+

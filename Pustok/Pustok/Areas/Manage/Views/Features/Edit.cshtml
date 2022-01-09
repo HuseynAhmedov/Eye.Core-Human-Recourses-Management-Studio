@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@model Feature
+
+<h2>Edit Feature</h2>
+<form method="post" asp-action="NewFeature">
+    <div class="input-group mb-3 col-6">
+        <span class="input-group-text" id="inputGroup-sizing-default">Header</span>
+        <input value="@Model.Header" asp-for="Header" type="text" class="form-control" name="Header" id="Header" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <span class="text-danger" asp-validation-for="Header"></span>
+    </div>
+    <div class="input-group mb-3 col-6">
+        <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+        <input value="@Model.Title" asp-for="Title" type="text" class="form-control" name="Title" id="Title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <span class="text-danger" asp-validation-for="Title"></span>
+    </div>
+    <div class="input-group mb-3 col-6">
+        <span class="input-group-text" id="inputGroup-sizing-default">Logo</span>
+        <input value="@Model.Logo" asp-for="Logo" type="text" class="form-control" name="Logo" id="Logo" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <span class="text-danger" asp-validation-for="Logo"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+
+
