@@ -1,0 +1,27 @@
+﻿@model PageNationVM
+<nav aria-label="Page navigation example" class="d-flex justify-content-center">
+    <ul class="pagination">
+        @{
+            string nextDisable = "";
+            string previousDisable = "";
+            int pageBefore = 1;
+            if (Model.PageSelected - 1 != 0) { pageBefore = Model.PageSelected - 1; }
+            int pageAfter = Model.PageCount;
+            if (Model.PageSelected + 1 <= Model.PageCount) { pageAfter = Model.PageSelected + 1; }
+            if (Model.PageSelected == pageBefore) { pageBefore = pageAfter + 1; previousDisable = "disabled"; }
+            if (Model.PageSelected == pageAfter) { pageAfter = pageBefore - 1; nextDisable = "disabled"; }
+        }
+
+        <li class="page-item @previousDisable"><a class="page-link" asp-action="index" asp-route-page="@pageBefore">Previous</a></li>
+
+        @for (int i = 1; i <= Model.PageCount; i++)
+        {
+            if (i == Model.PageSelected || i == pageAfter || i == pageBefore)
+            {
+                <li class="page-item @(i==Model.PageSelected?"active":"")"><a class="page-link" asp-action="index" asp-route-page="@i">@i</a></li>
+            }
+        }
+
+        <li class="page-item @nextDisable "><a class="page-link" asp-action="index" asp-route-page="@pageAfter">Next</a></li>
+    </ul>
+</nav>

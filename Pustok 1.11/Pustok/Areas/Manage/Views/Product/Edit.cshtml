@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@model Product
+<h2 style="margin-left: 11px;">Edit Product</h2>
+<form method="post" asp-action="edit" class="col-6" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Title">Title</label>
+        <input class="form-control" asp-for="Title" placeholder="Enter Name">
+        <span class="text-danger" asp-validation-for="Title"></span>
+    </div>
+    <div class="form-row" style=" display: flex; flex-direction: column;">
+        <div class="form-group col-md-6">
+            <label asp-for="AuthorId">Author</label>
+            <select class="form-control" asp-for="AuthorId" asp-items="@new SelectList((List<Author>)ViewBag.Authors,nameof(Author.Id),nameof(Author.Name))">
+            </select>
+            <span class="text-danger" asp-validation-for="AuthorId"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="CategoryId">Category</label>
+            <select class="form-control" asp-for="CategoryId" asp-items="@new SelectList((List<Category>)ViewBag.Category,nameof(Category.Id),nameof(Category.Name))">
+            </select>
+            <span class="text-danger" asp-validation-for="CategoryId"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="GenreId">Genre</label>
+            <select class="form-control" asp-for="GenreId" asp-items="@new SelectList((List<Genre>)ViewBag.Genres,nameof(Genre.Id),nameof(Genre.Name))">
+            </select>
+            <span class="text-danger" asp-validation-for="GenreId"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="TagIds">Tags</label>
+            <select class="form-control" asp-for="TagIds" asp-items="@new SelectList((List<Tag>)ViewBag.Tags,nameof(Tag.Id),nameof(Tag.Name))">
+            </select>
+            <span class="text-danger" asp-validation-for="TagIds"></span>
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label asp-for="Code">Code</label>
+            <input class="form-control" asp-for="Code" placeholder="Enter Code">
+            <span class="text-danger" asp-validation-for="Code"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="Price">Selling Price</label>
+            <input class="form-control" asp-for="Price" placeholder="Enter CostPrice">
+            <span class="text-danger" asp-validation-for="Price"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="PriceOld">old Price</label>
+            <input class="form-control" asp-for="PriceOld" placeholder="Enter old price">
+            <span class="text-danger" asp-validation-for="PriceOld"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="PriceDiscount">Discount Percent</label>
+            <input class="form-control" asp-for="PriceDiscount" placeholder="Enter Discount Percent">
+            <span class="text-danger" asp-validation-for="PriceDiscount"></span>
+        </div>
+    </div>
+
+
+
+    <div class="form-row">
+        <div class="form-check col-md-4 text-center">
+            <input class="form-check-input" asp-for="Availability">
+            <label class="form-check-label" asp-for="Availability">
+                Stock status
+            </label>
+            <span class="text-danger" asp-validation-for="Availability"></span>
+        </div>
+        <div class="form-check col-md-4 text-center">
+            <input class="form-check-input" asp-for="New">
+            <label class="form-check-label" asp-for="New">
+                New Product
+            </label>
+            <span class="text-danger" asp-validation-for="New"></span>
+        </div>
+        <div class="form-check col-md-4 text-center">
+            <input class="form-check-input" asp-for="Featured">
+            <label class="form-check-label" asp-for="Featured">
+                Featured
+            </label>
+            <span class="text-danger" asp-validation-for="Featured"></span>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label asp-for="Article">Description</label>
+        <textarea class="form-control" asp-for="Article" placeholder="Enter description"></textarea>
+        <span class="text-danger" asp-validation-for="Article"></span>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <img width="200" src="~/@Model.ProductImages.FirstOrDefault(x=> x.MainImage == true).Source" />
+            <label asp-for="PosterImageFile">Cover Image</label>
+            <input class="form-control" asp-for="PosterImageFile">
+            <span class="text-danger" asp-validation-for="PosterImageFile"></span>
+        </div>
+        <div class="form-group col-md-6">`
+            <img width="200" src="~/@Model.ProductImages.FirstOrDefault(x=> x.HoverImage == true).Source" />
+            <label asp-for="HoverImageFile">Hover Image</label>
+            <input class="form-control" asp-for="HoverImageFile">
+            <span class="text-danger" asp-validation-for="HoverImageFile"></span>
+        </div>
+        <div class="form-group col-md-12">
+            <label asp-for="ImageFiles">ImageFiles</label>
+            <input class="form-control" asp-for="ImageFiles">
+            <span class="text-danger" asp-validation-for="ImageFiles"></span>
+            @{ foreach (ProductImage item in Model.ProductImages.Where(x => x.MainImage == false && x.HoverImage == false))
+                {
+                    <div class="imb-box d-inline-block">
+                        <img width="200" src="~/@item.Source" />
+                        <input type="hidden" name="BookImageIds" value="@item.Id" />
+                    </div>
+
+                } }
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+}
+
+
