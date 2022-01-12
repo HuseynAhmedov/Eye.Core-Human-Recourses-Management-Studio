@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewData["Title"] = "Order";
+}
+
+@model CheckoutVM
+@{
+    float total = 0;
+}
+
+<section class="breadcrumb-section">
+    <h2 class="sr-only">Site Breadcrumb</h2>
+    <div class="container">
+        <div class="breadcrumb-contents">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">Checkout</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+<main id="content" class="page-section inner-page-sec-padding-bottom space-db--20">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Checkout Form s-->
+                <div class="checkout-form">
+                    <div class="row row-40">
+                        <div class="col-lg-7 mb--20">
+                            @await Html.PartialAsync("_CheckoutFormPartial", Model.Order);
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="row">
+                                <!-- Cart Total -->
+                                <div class="col-12">
+                                    <div class="checkout-cart-total">
+                                        <h2 class="checkout-title">YOUR ORDER</h2>
+                                        <h4>Product <span>Total</span></h4>
+                                        <ul>
+                                            @foreach (var item in Model.CheckoutItems)
+                                            {
+                                                float salePrice = item.Product.PriceDiscount > 0 ? (item.Product.Price * (1 - item.Product.PriceDiscount / 100)) : item.Product.Price;
+
+                                                <li>
+                                                    <span class="left">@item.Product.Title X @item.Count</span> <span class="right">@((salePrice*item.Count).ToString("0.00"))</span>
+                                                </li>
+
+                                                total += (salePrice * item.Count);
+                                            }
+                                        </ul>
+                                        <p>Sub Total <span>$@total.ToString("0.00")</span></p>
+
+                                        <div class="term-block">
+                                            <input type="checkbox" id="accept_terms2">
+                                            <label for="accept_terms2">
+                                                I’ve read and accept the terms &
+                                                conditions
+                                            </label>
+                                        </div>
+                                        <button type="submit" form="order-form" class="place-order w-100">Place order</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ValidationScriptsPartial");
+</main>
+
