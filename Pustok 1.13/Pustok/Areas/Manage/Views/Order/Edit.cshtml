@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+}
+@model Order
+
+<h2 class="ml-2">Edit Order</h2>
+
+
+<p class="col-6">ID : @Model.Id</p>
+<p class="col-6">Username : @Model.AppUser.UserName</p>
+<p class="col-6">Item count : @Model.OrderItems.Count()</p>
+<p class="col-6">Date : @Model.CreatedAt</p>
+<p class="col-6">Address 1 : @Model.Address1</p>
+<p class="col-6">Address 2 : @Model.Address2</p>
+<p class="col-6">City : @Model.City</p>
+<p class="col-6">Country : @Model.Country</p>
+<p class="col-6">Zipcode : @Model.Zipcode</p>
+
+<form method="post" asp-action="Edit" class="col-6">
+    <div class="input-group mb-4">
+        <p class="col-12 mb-1">Status</p>
+        <select asp-for="Status" class="form-select" aria-label="Status">
+            <option value="1"> Pending</option>
+            <option value="2"> Accepted</option>
+            <option value="3"> Denied</option>
+            <option value="4"> Canceled</option>
+        </select>
+    </div>
+    <div class="input-group mb-4">
+        <p class="col-12 mb-1">Delivery Status</p>
+        <select asp-for="DeliveryStatus" class="form-select" aria-label="Status">
+            <option value="0"> OnProcessing</option>
+            <option value="1"> OnStorage</option>
+            <option value="2"> Shipped</option>
+            <option value="3"> Delivered</option>
+        </select>
+    </div>
+    <input value="@Model.Address1" type="hidden" name="Address1" />
+    <input value="@Model.Address2" type="hidden" name="Address2" />
+    <input value="@Model.AppUserId" type="hidden" name="AppUserId" />
+    <input value="@Model.Phone" type="hidden" name="Phone" />
+    <input value="@Model.City" type="hidden" name="City" />
+    <input value="@Model.Country" type="hidden" name="Country" />
+    <input value="@Model.Zipcode" type="hidden" name="Zipcode" />
+
+    <button type="submit" class="btn btn-primary mb-5">Submit</button>
+</form>
+
+<h2 class="ml-2">Order Products</h2>
+
+<table class="table col-12">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Product</th>
+            <th scope="col">Count</th>
+            <th scope="col">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (OrderItem item in Model.OrderItems)
+        {
+            int rowNum = Model.OrderItems.IndexOf(item) + 1;
+            <tr>
+                <th scope="row">@rowNum</th>
+                <td>@item.Id</td>
+                <td>@item.Product.Title</td>
+                <td>@item.Count</td>
+                <td>@item.CostPrice</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}

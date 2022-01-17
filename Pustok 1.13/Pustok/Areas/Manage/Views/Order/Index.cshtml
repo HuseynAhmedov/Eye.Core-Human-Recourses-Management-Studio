@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@model OrderVM
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">User</th>
+            <th scope="col">Item count</th>
+            <th scope="col">Date</th>
+            <th scope="col">Delivery status</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Order item in Model.Orders)
+        {
+            int rowNum = Model.Orders.IndexOf(item) + 1;
+        <tr>
+            <th scope="row">@rowNum</th>
+            <td>@item.Id</td>
+            <td>@item.AppUser.UserName</td>
+            <td>@item.OrderItems.Count()</td>
+            <td>@item.CreatedAt</td>
+            <td>@item.DeliveryStatus</td>
+            <td>@item.Status</td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <a asp-area="manage" asp-controller="order" asp-action="edit" asp-route-id="@item.Id"><button type="button" class="btn btn-warning" style=" border-radius: 0px !important;">Edit</button></a>
+                    <button type="button" class="btn btn-danger" onclick="DeleteAlert('order',@item.Id)">Denie</button>
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@{await Html.RenderPartialAsync("_PageNation", Model.pageNation);}
+
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
+}
+
+
