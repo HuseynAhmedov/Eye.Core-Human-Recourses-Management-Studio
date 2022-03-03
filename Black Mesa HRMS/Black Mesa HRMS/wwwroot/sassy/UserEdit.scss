@@ -1,0 +1,207 @@
+$base-color : #eae7dc;
+$base-color-light :ghostwhite;
+$base-color-dark : #d8c3a5;
+$text-color-light : #8e8d8a;
+$link-color : #e98074;
+$link-color-active : #e85a4f;
+$notification-color-info: dodgerblue;
+$notification-color-warning : gold	;
+$notification-color-success : seagreen; 
+
+@media screen and (max-width: 768px)
+{
+    .user-top-con 
+    {
+        .row 
+        {
+            flex-direction: column-reverse !important ;
+            align-items: center !important;
+            img 
+            {
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}
+
+#UserEdit
+{
+    .form-select:focus
+    {
+        box-shadow: none !important;
+        border-color: $link-color-active;
+    }
+    .form-label
+    {
+        color: black;
+        font-weight: 600 !important;
+    }
+    padding: 1rem;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    min-height: 100%;
+    .user-profile-con
+    {
+        .user-profile-top-con
+        {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            span 
+            {
+                font-size: 20px;
+                font-weight: 500;
+                font-family: 'Poppins', sans-serif;
+            }
+            .btn
+            {
+               transition: .2s all ;
+               font-weight: 500;
+               font-size: 16px;
+               font-family: 'Poppins', sans-serif;
+               color: white;
+               background-color: $link-color-active;
+               i 
+               {
+                   margin-left: 7px;
+               }
+            }
+            .btn:hover
+            {
+              box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+            }
+            .btn:focus
+            {
+              box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+            }
+        }
+        .user-profile-mid-con
+        {
+            margin-top: 1rem;
+            .row 
+            {
+                flex-direction: column;
+                align-content: flex-start;
+                justify-content: flex-start;
+                .user-top-con
+                {
+                    .row
+                    {
+                        justify-content: space-between;
+                        align-content: flex-start;
+                        flex-direction: row;
+                        align-items: flex-start;
+                        .info-con
+                        {
+                            
+                            font-family: 'Open-sans', sans-serif;
+                            p 
+                            {
+                                color: black;
+                                font-weight: 600;
+                            }
+                            .header
+                            {
+                                color: $text-color-light;
+                                padding-right: 7px;
+                                font-weight: 500;
+                            }
+                        }
+                        img 
+                        {
+                            transition: .2s all;
+                            border-radius: 50%;
+                            max-width: 240px;
+                            width: 200px;
+                            height: 180px;
+                            max-height: 240px;
+                        }
+                    }
+                }
+                .user-mid-con
+                {
+                    .active
+                    {
+                        color: $link-color-active !important;
+                    }
+                    .nav-link 
+                    {
+                        font-size: 18px;
+                        font-weight: 500;
+                        font-family: 'Poppins', sans-serif;
+                        transition: .2s all;
+                        color: $text-color-light;
+                    }
+                    .tab-pane
+                    {
+                        margin-top: 1rem;
+                        font-family: 'Open-sans', sans-serif;
+                        p 
+                        {
+                            color: black;
+                            font-weight: 600;
+                        }
+                        .header
+                        {
+                            color: $text-color-light;
+                            padding-right: 7px;
+                            font-weight: 400;
+                        }
+                    }
+                }
+                .user-bot-con 
+                {
+                    .row 
+                    {
+                        padding: 0px 12px;
+                        flex-direction: row;
+                        align-content: flex-start;
+                        align-items: center;
+                        column-gap: 7px;
+                        .btn
+                        {
+                            transition: .2s all;
+                            font-family: 'Poppins', sans-serif;
+                            color: white;
+                            width: fit-content;
+                        }
+                        .btn-cancel 
+                        {
+                            background-color: $text-color-light;
+                        }
+                        .btn-apply
+                        {
+                            background-color: $link-color-active;
+                        }
+                        .btn:hover
+                        {
+                          transform: scale(102%);
+                          box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+                        }
+                        .btn:focus
+                        {
+                          transform: scale(102%);
+                          box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+}

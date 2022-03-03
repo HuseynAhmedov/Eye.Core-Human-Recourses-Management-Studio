@@ -1,0 +1,111 @@
+@media screen and (max-width: 500px) {
+  #LeaveRequest .list-item-top {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start !important;
+        -ms-flex-align: start !important;
+            align-items: flex-start !important;
+    row-gap: 10px;
+  }
+}
+
+#LeaveRequest {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 7px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  min-height: 100%;
+}
+
+#LeaveRequest .leave-request-con .leave-request-top-con {
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#LeaveRequest .leave-request-con .leave-request-top-con span {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
+
+#LeaveRequest .leave-request-con .leave-request-top-con .btn {
+  -webkit-transition: .2s all;
+  transition: .2s all;
+  font-family: 'Poppins', sans-serif;
+  color: #8e8d8a;
+  border-color: #e85a4f;
+}
+
+#LeaveRequest .leave-request-con .leave-request-top-con .btn:hover {
+  color: white;
+  background-color: #e85a4f;
+}
+
+#LeaveRequest .leave-request-con .leave-request-top-con .btn:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+#LeaveRequest .leave-request-con .list-group-item .form-check-input:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+#LeaveRequest .leave-request-con .list-group-item .list-item-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  word-wrap: break-word;
+  font-size: 20px;
+  color: #e85a4f;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 1rem;
+}
+
+#LeaveRequest .leave-request-con .list-group-item .list-item-top .list-item-btn-con button i {
+  margin-left: 7px;
+}
+
+#LeaveRequest .leave-request-con .list-group-item .list-item-top .list-item-btn-con button:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+#LeaveRequest .leave-request-con .list-group-item .list-item-title {
+  margin-bottom: 0.5rem;
+}
+
+#LeaveRequest .leave-request-con .list-group-item .list-item-title span {
+  word-wrap: break-word;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+#LeaveRequest .leave-request-con .list-group-item .list-item-time {
+  word-wrap: break-word;
+  color: #8e8d8a;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 12px;
+}
+/*# sourceMappingURL=LeaveRequest.css.map */

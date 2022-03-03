@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section id="LeaveRequest">
+    <div class="leave-request-con">
+        <div class="leave-request-top-con">
+            <span>Leave Requests</span>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="list-item-top">
+                    <div>
+                        Gordon Freeman
+                    </div>
+                    <div class="list-item-btn-con">
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#LeaveRequestModal">Deny<i class="fa-solid fa-hand"></i></button>
+                        <button class="btn btn-success">Allow<i class="fa-solid fa-thumbs-up"></i> </button>
+                    </div>
+                </div>
+                <div class="list-item-title">
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolorem, dolores inventore quidem quas ducimus mollitia placeat officia! Corporis cum porro iure at praesentium quibusdam ea consectetur, unde voluptas deserunt.</span>
+                </div>
+                <div class="list-item-time">
+                    <span>REQUESTED FOR 4:30 P.M. ON JUN 2021</span>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="list-item-top">
+                    <div>
+                        Gordon Freeman
+                    </div>
+                    <div class="list-item-btn-con">
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#LeaveRequestModal">Deny<i class="fa-solid fa-hand"></i></button>
+                        <button class="btn btn-success">Allow<i class="fa-solid fa-thumbs-up"></i> </button>
+                    </div>
+                </div>
+                <div class="list-item-title">
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolorem, dolores inventore quidem quas ducimus mollitia placeat officia! Corporis cum porro iure at praesentium quibusdam ea consectetur, unde voluptas deserunt.</span>
+                </div>
+                <div class="list-item-time">
+                    <span>REQUESTED FOR 4:30 P.M. ON JUN 2021</span>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="list-item-top">
+                    <div>
+                        Gordon Freeman
+                    </div>
+                    <div class="list-item-btn-con">
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#LeaveRequestModal">Deny<i class="fa-solid fa-hand"></i></button>
+                        <button class="btn btn-success">Allow<i class="fa-solid fa-thumbs-up"></i> </button>
+                    </div>
+                </div>
+                <div class="list-item-title">
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolorem, dolores inventore quidem quas ducimus mollitia placeat officia! Corporis cum porro iure at praesentium quibusdam ea consectetur, unde voluptas deserunt.</span>
+                </div>
+                <div class="list-item-time">
+                    <span>REQUESTED FOR 4:30 P.M. ON JUN 2021</span>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="list-item-top">
+                    <div>
+                        Gordon Freeman
+                    </div>
+                    <div class="list-item-btn-con">
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#LeaveRequestModal">Deny<i class="fa-solid fa-hand"></i></button>
+                        <button class="btn btn-success">Allow<i class="fa-solid fa-thumbs-up"></i> </button>
+                    </div>
+                </div>
+                <div class="list-item-title">
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolorem, dolores inventore quidem quas ducimus mollitia placeat officia! Corporis cum porro iure at praesentium quibusdam ea consectetur, unde voluptas deserunt.</span>
+                </div>
+                <div class="list-item-time">
+                    <span>REQUESTED FOR 4:30 P.M. ON JUN 2021</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+<div class="modal fade" id="LeaveRequestModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title leave-request-modal-title " id="exampleModalLabel">Leave Request Denial</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="leave-request-modal-con">
+                    <form action="" id="FormLeaveRequest">
+                        <span></span>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Denial Reason</span>
+                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel-modal" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" id="LeaveRequestAddBtn" class="btn-apply-modal">Send and Apply</button>
+            </div>
+        </div>
+    </div>
+</div>
+
