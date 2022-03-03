@@ -1,0 +1,120 @@
+#Departments {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 7px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  min-height: 100%;
+}
+
+#Departments .Departments-con .Departments-top-con {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#Departments .Departments-con .Departments-top-con span {
+  font-weight: 500;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#Departments .Departments-con .Departments-top-con .search-form .btn {
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  color: #8e8d8a;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  -webkit-transition: .2s all;
+  transition: .2s all;
+  border: 1px solid #e85a4f;
+  font-weight: 500;
+}
+
+#Departments .Departments-con .Departments-top-con .search-form .btn i {
+  margin-left: 5px;
+}
+
+#Departments .Departments-con .Departments-top-con .search-form .btn:hover {
+  color: white;
+  background-color: #e85a4f;
+  border-color: #e85a4f;
+}
+
+#Departments .Departments-con .Departments-top-con .search-form .btn:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+#Departments .Departments-con .Department-card-con {
+  padding: 1rem;
+}
+
+#Departments .Departments-con .Department-card-con .row {
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  row-gap: 24px;
+}
+
+#Departments .Departments-con .Department-card-con .row .card-con {
+  height: 100%;
+}
+
+#Departments .Departments-con .Department-card-con .row .card {
+  padding: 0px;
+}
+
+#Departments .Departments-con .Department-card-con .row .card .card-body {
+  font-family: 'Poppins', sans-serif;
+}
+
+#Departments .Departments-con .Department-card-con .row .card .card-body .card-title {
+  color: #e85a4f;
+  font-size: 24px;
+}
+
+#Departments .Departments-con .Department-card-con .row .card .card-body .card-desc {
+  font-weight: 400;
+}
+
+#Departments .Departments-con .Department-card-con .row .card .card-body .card-text {
+  font-weight: 400;
+}
+
+#Departments .Departments-con .Department-card-con .row .card .card-body .card-text .header {
+  font-weight: 500;
+}
+
+#Departments .Departments-con .Department-card-con .row .card .row {
+  row-gap: 0px;
+}
+
+#Departments .Departments-con .Department-card-con .row .card img {
+  width: 100%;
+  max-height: 500px;
+}
+
+#Departments .Departments-con .Department-card-con .row .card .card-footer {
+  background-color: #e85a4f;
+  text-align: center;
+}
+
+#Departments .Departments-con .Department-card-con .row .card .card-footer a {
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  color: white;
+}
+
+#Departments .Departments-con .Department-card-con .row .card .card-footer a i {
+  margin-left: 5px;
+}
+/*# sourceMappingURL=Departments.css.map */

@@ -1,0 +1,411 @@
+$base-color : #eae7dc;
+$base-color-light :ghostwhite;
+$base-color-dark : #d8c3a5;
+$text-color-light : #8e8d8a;
+$link-color : #e98074;
+$link-color-active : #e85a4f;
+$notification-color-info: dodgerblue;
+$notification-color-warning : gold	;
+$notification-color-success : seagreen; 
+
+@media screen and (max-width: 1471px)
+{
+    #DashboardTopCards 
+    {
+        min-width: 100%;
+        .dashboard-top-cards-con
+        {
+            .row 
+            {
+                flex-direction: row !important;
+                .card 
+                {
+                    min-width: 50%;
+                }
+            }
+        }
+    }
+    #IncomeChart 
+    {
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 1519px)
+{
+    #IncomeChart
+    {
+        .color-con
+        {
+            width: 20px !important;
+        }
+    }
+}
+
+@media screen and (max-width: 1199px)
+{
+    #IncomeChart
+    {
+        .list-group
+        {
+            align-items: center;
+            align-content: center;
+        }
+    }
+}
+@media screen and (max-width: 1199px)
+{
+    .salary-by-date-con
+    {
+        padding-left: 0px !important;
+    }
+}
+
+.general-info-con
+{
+    margin-bottom: 1rem;
+    .row 
+    {
+        align-items: center;
+    }
+}
+#DashboardTopCards 
+{
+    
+    padding-bottom: 10px;
+    .dashboard-top-cards-con
+    {
+        .row 
+        {
+            flex-direction: column;
+            row-gap: 10px;
+            justify-content: center;
+        }
+        .card
+        {
+            min-width: 100%;
+            background-color: $base-color-light;
+            border: none;
+            .card-body 
+            {
+                background-color: white;
+                column-gap: 10px;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                display: flex;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                border-radius: 7px;
+                .card-context 
+                {
+                    
+                    .card-title
+                    {
+                        color: $text-color-light;
+                        font-weight: 400;
+                        font-size: 18px;
+                        font-family: 'Poppins', sans-serif;
+                    }
+                    .card-text
+                    {
+                        font-weight: 500;
+                        font-size: 24px;
+                        font-family: 'Poppins', sans-serif;
+                    }
+                }
+                .card-logo 
+                {
+                    padding: 10px;
+                    border: 1px solid $text-color-light;
+                    border-radius: 6px;
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+}
+
+#IncomeChart
+{
+    .income-chart-con
+    {
+        
+        padding: 10px;
+        background-color: white;
+        border-radius: 7px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        min-height: 100%;
+        .row 
+        {
+            align-items: center;
+        }
+        .chart-main-con
+        {
+           .row
+           {
+               align-items: center;
+               row-gap: 40px;
+               .chart-name
+               {
+                   text-align: center;
+                   span 
+                   {
+                     font-weight: 500;
+                     font-size: 20px;
+                     font-family: 'Poppins', sans-serif;
+                   }
+               }
+           }
+        }
+        .chart-context-con
+        {
+            .list-group
+            {
+                .list-group-item
+                {
+                    border: none;
+                    .list-context
+                    {
+                        column-gap: 10px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        flex-direction: row;
+                        .color-con
+                        {
+                            width: 150px;
+                            height: 20px;
+                            background-color: #e85a4f;
+                        }
+                        .text-con 
+                        {
+                            font-size: 20px;
+                            font-weight: 400;
+                            font-family: 'Poppins', sans-serif;
+                        }
+                        .salary-con
+                        {
+                            font-size: 20px;
+                            font-weight: 600;
+                            font-family: 'Poppins', sans-serif;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#GenderandSalary
+{
+    min-height: 100%;
+    .gender-salary-con
+    {
+        .salary-by-date-con
+        {
+            margin-bottom: 1rem;
+            padding: 0px;
+            padding-left: 1rem;
+            min-height: 100%;
+            .container-fluid
+            {
+                padding: 1rem;
+                background-color: white;
+                border-radius: 7px;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                min-height: 100%;
+            }
+            .row 
+            {
+                row-gap: 1rem;
+                .chart-top-con
+                {
+                    .active 
+                    {
+                        color: white !important;
+                        background-color: $link-color-active;
+                        border-color: $link-color-active;
+                    }
+                    align-items: center;
+                    display: flex;
+                    justify-content: space-between;
+                    .btn
+                    {
+                        color: $text-color-light;
+                        font-size: 14px;
+                        font-family: 'Poppins', sans-serif;
+                        transition: .2s all ;
+                        border: 1px solid $link-color-active;
+                    }
+                    .btn:hover 
+                    {
+                        color: white;
+                        background-color: $link-color-active;
+                        border-color: $link-color-active;
+                    }
+                    .btn:focus
+                    {
+                        box-shadow: none !important;
+                    }
+                }
+            }
+        }
+        .gender-chart-con
+        {
+            margin-bottom: 1rem;
+            padding: 0px !important;
+            min-height: 100%;
+            .container-fluid
+            {
+                padding: 1rem;
+                background-color: white;
+                border-radius: 7px;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                min-height: 100%;
+            }
+            .row 
+            {
+                row-gap: 1rem;
+            }
+        }
+        .chart-top-con
+        {
+            text-align: center;
+            span 
+            {
+                font-size: 20px;
+                font-weight: 500;
+                font-family: 'Poppins', sans-serif;
+            }
+        }
+    }
+}
+
+#TodoListDashboard
+{
+    padding: 1rem;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    min-height: 100%;
+    .to-do-list-con
+    {
+        .to-do-top-con
+        {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            span 
+            {
+                font-size: 20px;
+                font-weight: 500;
+                font-family: 'Poppins', sans-serif;
+            }
+            .btn
+            {
+                transition: .2s all;
+                font-family: 'Poppins', sans-serif;
+                color: $text-color-light;
+                border-color: $link-color-active;
+            }
+            .btn:hover 
+            {
+                color: white;
+                background-color: $link-color-active;
+            }
+            .btn:focus
+            {
+                box-shadow: none !important;
+            }
+        }
+
+        .list-group-item
+        {
+            .form-check-input:focus
+            {
+                box-shadow: none !important;
+            }
+            .list-item-top
+            {
+                word-wrap: break-word;
+                font-size: 20px;
+                color: $link-color-active;
+                font-weight: 500;
+                font-family: 'Poppins', sans-serif;
+                margin-bottom: 0.5rem;
+            }
+            .list-item-title
+            {
+                span 
+                {
+                    word-wrap: break-word;
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 400;
+                    font-size: 16px;
+                }
+                margin-bottom: 0.5rem;
+            }
+            .list-item-time
+            {
+                word-wrap: break-word;
+                color: $text-color-light;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 600;
+                font-style: italic;
+                font-size: 12px;
+            }
+        }
+
+        .done 
+        {
+            .list-item-top
+            {
+                color: $text-color-light;
+                text-decoration: line-through;
+            }
+            .list-item-title
+            {
+                span 
+                {
+                    color: $text-color-light;
+                    text-decoration: line-through;
+                }
+                
+            }
+        }
+    }
+}
+
+.to-do-list-modal-title
+{
+    font-family: 'Poppins', sans-serif;
+    color: $link-color-active;
+}
+.to-do-list-modal-con
+{
+    .input-group-text
+    {
+        font-family: 'Poppins', sans-serif;
+        background-color: $base-color-light;
+    }
+}
+.btn-cancel-modal
+{
+    padding: 5px 10px;
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid $text-color-light;
+    background-color: $text-color-light;
+    color: $base-color;
+    border-radius: 0.25rem;
+}
+
+.btn-apply-modal
+{
+    padding: 5px 10px;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 0.25rem;
+    border: 1px solid $link-color-active;
+    background-color: $link-color-active;
+    color: white;
+}

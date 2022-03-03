@@ -1,0 +1,135 @@
+#AttendanceTable {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 7px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  min-height: 100%;
+}
+
+#AttendanceTable .table-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#AttendanceTable .table-top span {
+  font-weight: 500;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#AttendanceTable .table-top .search-form .btn {
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  color: #8e8d8a;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  -webkit-transition: .2s all;
+  transition: .2s all;
+  border: 1px solid #e85a4f;
+  font-weight: 500;
+}
+
+#AttendanceTable .table-top .search-form .btn i {
+  margin-left: 5px;
+}
+
+#AttendanceTable .table-top .search-form .btn:hover {
+  color: white;
+  background-color: #e85a4f;
+  border-color: #e85a4f;
+}
+
+#AttendanceTable .table-top .search-form .btn:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+#AttendanceTable .table-con {
+  margin-bottom: 2rem;
+  max-width: 92rem;
+  overflow: scroll;
+  overflow-y: hidden;
+}
+
+#AttendanceTable .table-con .table {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-family: 'Open Sans', sans-serif;
+  --bs-table-hover-bg:#e8594f44;
+  --bs-table-striped-bg:#e980742f;
+  border-color: #8e8d8a;
+}
+
+#AttendanceTable .table-con .table tbody {
+  border-top: 2px #8e8d8a solid;
+  border-bottom: 2px #8e8d8a solid;
+}
+
+#AttendanceTable .table-con .table th {
+  position: relative;
+  min-width: 40px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+#AttendanceTable .table-con .table td {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#AttendanceTable .table-con .table td .table-action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-column-gap: 1rem;
+          column-gap: 1rem;
+}
+
+#AttendanceTable .table-con .table td .table-action a {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 0px 5px;
+}
+
+#AttendanceTable .table-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#AttendanceTable .table-bottom .pagination .page-link {
+  -webkit-transition: .2s all;
+  transition: .2s all;
+  font-family: 'Poppins', sans-serif;
+  color: black;
+}
+
+#AttendanceTable .table-bottom .pagination .page-link:hover {
+  background-color: #e85a4f;
+  color: white;
+}
+
+#AttendanceTable .table-bottom .pagination .page-link:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+/*# sourceMappingURL=Attendance.css.map */
