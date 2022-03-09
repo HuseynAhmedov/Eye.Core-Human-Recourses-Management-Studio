@@ -137,10 +137,17 @@
 
 .form-signin form {
   z-index: 3;
-  height: 524px;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
   padding: 1rem;
   border-radius: 7px;
   border: 1px solid #8e8d8a;
+}
+
+.form-signin form a {
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .form-signin form img {

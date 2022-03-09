@@ -1,4 +1,4 @@
-initClock();
+//initClock();
 let sidebarCloseBtn = document.getElementById("sidebarClose")
 let sidebar = document.getElementById("Sidebar")
 let shortcut = document.getElementById("Shortcut")

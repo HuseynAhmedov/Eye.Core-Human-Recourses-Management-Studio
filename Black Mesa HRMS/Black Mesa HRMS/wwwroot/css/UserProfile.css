@@ -109,9 +109,11 @@
   transition: .2s all;
   border-radius: 50%;
   max-width: 240px;
-  width: 200px;
+  width: 180px;
   height: 180px;
   max-height: 240px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 #UserProfile .user-profile-con .user-profile-mid-con .row .user-mid-con .active {

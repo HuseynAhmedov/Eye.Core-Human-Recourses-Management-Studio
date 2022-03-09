@@ -26,8 +26,22 @@ using Black_Mesa_HRMS.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\Huseyn\source\repos\Black Mesa HRMS\Black Mesa HRMS\Views\_ViewImports.cshtml"
+using Black_Mesa_HRMS.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\Huseyn\source\repos\Black Mesa HRMS\Black Mesa HRMS\Views\_ViewImports.cshtml"
+using Black_Mesa_HRMS.Services;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a70ce8b33d9fff1620c85853e480d862ca9205a0", @"/Views/EmployeeBonus/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a51f5bb0227a3f9e499a109e035782c5ef091e17", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0a1e48472f57e3847419bfa6705d7cd0e497bd12", @"/Views/_ViewImports.cshtml")]
     public class Views_EmployeeBonus_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "1", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -138,7 +152,7 @@ using Black_Mesa_HRMS.Models;
             <div class=""modal-body"">
                 <div class=""employee-salary-modal-con"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a09325", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a09727", async() => {
                 WriteLiteral(@"
                         <div class=""form-floating mb-3"">
                             <input type=""email"" class=""form-control"" id=""floatingInput"" placeholder=""name@example.com"">
@@ -147,7 +161,7 @@ using Black_Mesa_HRMS.Models;
                         <div class=""form-floating"">
                             <select class=""form-select"" id=""floatingSelect"" aria-label=""Floating label select example"">
                                 ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a010098", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a010500", async() => {
                     WriteLiteral("ID");
                 }
                 );
@@ -164,7 +178,7 @@ using Black_Mesa_HRMS.Models;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a011464", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a011866", async() => {
                     WriteLiteral("FullName");
                 }
                 );
@@ -180,7 +194,7 @@ using Black_Mesa_HRMS.Models;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a012722", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a013124", async() => {
                     WriteLiteral("Department");
                 }
                 );
@@ -196,7 +210,7 @@ using Black_Mesa_HRMS.Models;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a013982", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a014384", async() => {
                     WriteLiteral("Job Title");
                 }
                 );
@@ -212,7 +226,7 @@ using Black_Mesa_HRMS.Models;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a015241", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a015643", async() => {
                     WriteLiteral("Job Position");
                 }
                 );
@@ -228,7 +242,7 @@ using Black_Mesa_HRMS.Models;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a016503", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a016905", async() => {
                     WriteLiteral("Total Bonus");
                 }
                 );
@@ -244,7 +258,7 @@ using Black_Mesa_HRMS.Models;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a017764", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a018166", async() => {
                     WriteLiteral("Last Bonus");
                 }
                 );
@@ -303,7 +317,7 @@ using Black_Mesa_HRMS.Models;
             <div class=""modal-body"">
                 <div class=""employee-salary-modal-con"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a021570", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a70ce8b33d9fff1620c85853e480d862ca9205a021972", async() => {
                 WriteLiteral(@"
                         <div class=""form-floating mb-3"">
                             <input type=""number"" class=""form-control"" id=""floatingInput"">

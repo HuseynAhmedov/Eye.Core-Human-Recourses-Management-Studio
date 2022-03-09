@@ -55,11 +55,16 @@ namespace Black_Mesa_HRMS.Migrations
                     b.Property<DateTime>("DateGiven")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("EmployeeID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Reason")
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeID");
 
                     b.ToTable("Bonuses");
                 });
@@ -81,9 +86,6 @@ namespace Black_Mesa_HRMS.Migrations
                     b.Property<int?>("SectorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SectortId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("SectorId");
@@ -102,23 +104,38 @@ namespace Black_Mesa_HRMS.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CardNo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(9)")
                         .HasMaxLength(9);
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
+
+                    b.Property<DateTime>("EmployedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("ExpireDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FinCode")
+                        .IsRequired()
                         .HasColumnType("nvarchar(7)")
                         .HasMaxLength(7);
+
+                    b.Property<bool>("Fired")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("FiredDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("Gender")
                         .HasColumnType("bit");
@@ -134,12 +151,15 @@ namespace Black_Mesa_HRMS.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
-                    b.Property<int>("Nationality")
+                    b.Property<int>("NationalityID")
                         .HasColumnType("int");
 
                     b.Property<string>("PersonalNo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(7)")
                         .HasMaxLength(7);
 
@@ -148,6 +168,7 @@ namespace Black_Mesa_HRMS.Migrations
                         .HasMaxLength(15);
 
                     b.Property<string>("Surname")
+                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
@@ -157,7 +178,11 @@ namespace Black_Mesa_HRMS.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AppUserId");
+
                     b.HasIndex("JobPositionId");
+
+                    b.HasIndex("NationalityID");
 
                     b.ToTable("Employees");
                 });
@@ -237,13 +262,14 @@ namespace Black_Mesa_HRMS.Migrations
                     b.Property<int>("JobId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                    b.Property<int>("PositionId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("JobId");
+
+                    b.HasIndex("PositionId");
 
                     b.ToTable("JobPositions");
                 });
@@ -277,6 +303,33 @@ namespace Black_Mesa_HRMS.Migrations
                     b.ToTable("LeaveRequests");
                 });
 
+            modelBuilder.Entity("Black_Mesa_HRMS.Models.Nationality", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AlphaCode1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AlphaCode2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CountryCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShortName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Nationalities");
+                });
+
             modelBuilder.Entity("Black_Mesa_HRMS.Models.Notification", b =>
                 {
                     b.Property<int>("Id")
@@ -298,6 +351,21 @@ namespace Black_Mesa_HRMS.Migrations
                     b.ToTable("Notifications");
                 });
 
+            modelBuilder.Entity("Black_Mesa_HRMS.Models.Position", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Positions");
+                });
+
             modelBuilder.Entity("Black_Mesa_HRMS.Models.Salary", b =>
                 {
                     b.Property<int>("Id")
@@ -308,7 +376,7 @@ namespace Black_Mesa_HRMS.Migrations
                     b.Property<float>("Amount")
                         .HasColumnType("real");
 
-                    b.Property<int?>("EmployeeIdId")
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UntilDate")
@@ -316,7 +384,7 @@ namespace Black_Mesa_HRMS.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeIdId");
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Salaries");
                 });
@@ -560,12 +628,21 @@ namespace Black_Mesa_HRMS.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<bool>("Disabled")
+                        .HasColumnType("bit");
+
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("LastConnectDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("SignInEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SignInID")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("AppUser");
                 });
@@ -579,6 +656,15 @@ namespace Black_Mesa_HRMS.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Black_Mesa_HRMS.Models.Bonus", b =>
+                {
+                    b.HasOne("Black_Mesa_HRMS.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Black_Mesa_HRMS.Models.Department", b =>
                 {
                     b.HasOne("Black_Mesa_HRMS.Models.Sector", "Sector")
@@ -588,9 +674,19 @@ namespace Black_Mesa_HRMS.Migrations
 
             modelBuilder.Entity("Black_Mesa_HRMS.Models.Employee", b =>
                 {
+                    b.HasOne("Black_Mesa_HRMS.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
+
                     b.HasOne("Black_Mesa_HRMS.Models.JobPosition", "JobPosition")
                         .WithMany()
                         .HasForeignKey("JobPositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Black_Mesa_HRMS.Models.Nationality", "Nationality")
+                        .WithMany()
+                        .HasForeignKey("NationalityID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -611,6 +707,12 @@ namespace Black_Mesa_HRMS.Migrations
                         .HasForeignKey("JobId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Black_Mesa_HRMS.Models.Position", "Position")
+                        .WithMany()
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Black_Mesa_HRMS.Models.LeaveRequest", b =>
@@ -624,9 +726,11 @@ namespace Black_Mesa_HRMS.Migrations
 
             modelBuilder.Entity("Black_Mesa_HRMS.Models.Salary", b =>
                 {
-                    b.HasOne("Black_Mesa_HRMS.Models.Employee", "EmployeeId")
+                    b.HasOne("Black_Mesa_HRMS.Models.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmployeeIdId");
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

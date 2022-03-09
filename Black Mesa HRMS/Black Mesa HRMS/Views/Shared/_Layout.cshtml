@@ -7,7 +7,7 @@
     <title>All Employees</title>
 
     <!--Tab icon-->
-    <link rel="icon" type="img/png" href="favicon_io/favicon-16x16.png">
+    <link rel="icon" type="img/png" href="~/favicon_io/favicon-16x16.png">
 
     <!--Main stylee.css-->
     <link rel="stylesheet" href="~/css/style.css">
@@ -111,7 +111,7 @@
                 <div class="d-flex flex-column flex-shrink-0" style="width: 4.5rem;">
                     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
                         <li class="nav-item">
-                            <a href="#" class="d-block p-3 link-dark text-decoration-none " title="" data-bs-toggle="tooltip" data-bs-placement="right">
+                            <a asp-action="index" asp-controller="Employee" class="d-block p-3 link-dark text-decoration-none " title="" data-bs-toggle="tooltip" data-bs-placement="right">
                                 <img src="~/Image/user.png" alt="user image">
                             </a>
                         </li>
@@ -175,7 +175,7 @@
                                     </h2>
                                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#EmployeesAccordion">
                                         <div class="accordion-body">
-                                            <a asp-action="index" asp-controller="Employee" class="accordion-link link-dark">
+                                            <a asp-action="Create" asp-controller="Employee" class="accordion-link link-dark">
                                                 Add Employee
                                             </a>
                                             <a asp-action="index" asp-controller="AllEmployees" class="accordion-link link-dark">

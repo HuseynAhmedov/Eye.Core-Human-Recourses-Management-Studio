@@ -1,0 +1,286 @@
+﻿@inject EmployeeFormService viewService
+@{
+    ViewData["Title"] = "Create";
+
+    List<Nationality> nationalities = viewService.GetNationalities();
+
+    List<Sector> sectors = viewService.GetSectors();
+
+    List<Department> departments = viewService.GetDepartments(Model.SectorId);
+
+    List<Job> jobs = viewService.GetJobs(Model.DepartmentId);
+
+    List<JobPosition> jobPositions = viewService.GetJobPositions(Model.JobId);
+
+    int showTab = Convert.ToInt32(TempData["Showtab"]);
+
+    bool showPassport = false;
+    bool showSalary = false;
+    bool showPosition = false;
+    bool showContact = false;
+
+    string showPassportStr = "";
+    string showSalarytStr = "";
+    string showPositionStr = "";
+    string showContactStr = "";
+
+    if (showTab == 1)
+    {
+        showPassport = true;
+        showPassportStr = "show active";
+    }
+    else if (showTab == 2)
+    {
+        showSalary = true;
+        showSalarytStr = "show active";
+    }
+    else if (showTab == 3)
+    {
+        showPosition = true;
+        showPositionStr = "show active";
+    }
+    else if (showTab == 4)
+    {
+        showContact = true;
+        showContactStr = "show active";
+    }
+}
+@model CreateEmployeeVM
+<section id="UserEdit">
+    <form method="post" asp-action="create" class="user-edit-form " id="UserEditForm" enctype="multipart/form-data">
+        <div class="user-profile-con">
+            <div class="user-profile-top-con">
+                <span>New Employee</span>
+            </div>
+            <div class="user-profile-mid-con">
+                <div class="row">
+                    <div class="col-12 user-top-con ">
+                        <div class="row">
+                            <div class=" info-con col-xl-5 col-lg-6 col-md-7 col-xs-12">
+                                <a href="" class="btn fileUpload mb-3">
+                                    Upload Image
+                                    <input type="file" asp-for="Employee.FormImage" id="ImageInput" class="upload" />
+                                </a>
+                                <span class="text-danger invalid-input-text mt-1" asp-validation-for="Employee.FormImage"></span>
+                                <div class="mb-3">
+                                    <label  asp-for="Employee.Name" class="form-label">Name</label>
+                                    <input type="text" asp-for="Employee.Name" class="form-control" placeholder="Gordon">
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="Employee.Name"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="Employee.Surname" class="form-label">Surname</label>
+                                    <input type="text" asp-for="Employee.Surname" class="form-control" placeholder="Freeman">
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="Employee.Surname"></span>
+                                </div>
+                                <p class="form-label mb-2">Gender</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" asp-for="Employee.Gender" type="radio" value="true">
+                                    <label class="form-check-label" asp-for="Employee.Gender">
+                                        Male
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="radio" asp-for="Employee.Gender" value="false">
+                                    <label class="form-check-label" asp-for="Employee.Gender">
+                                        Female
+                                    </label>
+                                </div>
+                                <span class="text-danger invalid-input-text mt-1" asp-validation-for="Employee.Gender"></span>
+                            </div>
+                            <div class="col d-flex justify-content-md-end justify-content-center image-con">
+                                <img src="~/upload/default/userDefaultImage.png" id="PreviewImage" class="col-sm-12" alt="user image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 user-mid-con">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                @if (showPassport == true)
+                                {
+                                    <button class="nav-link active" id="Passport-tab" data-bs-toggle="tab" data-bs-target="#Passport" type="button" role="tab" aria-controls="Passport" aria-selected="true">Passport</button>
+                                }
+                                else
+                                {
+                                    <button class="nav-link" id="Passport-tab" data-bs-toggle="tab" data-bs-target="#Passport" type="button" role="tab" aria-controls="Passport" aria-selected="false">Passport</button>
+                                }
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                @if (showContact == true)
+                                {
+                                    <button class="nav-link active" id="Contact-tab" data-bs-toggle="tab" data-bs-target="#Contact" type="button" role="tab" aria-controls="Contact" aria-selected="true">Contact</button>
+                                }
+                                else
+                                {
+                                    <button class="nav-link" id="Contact-tab" data-bs-toggle="tab" data-bs-target="#Contact" type="button" role="tab" aria-controls="Contact" aria-selected="false">Contact</button>
+                                }
+
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                @if (showSalary == true)
+                                {
+                                    <button class="nav-link active" id="Salary-tab" data-bs-toggle="tab" data-bs-target="#Salary" type="button" role="tab" aria-controls="Salary" aria-selected="true">Salary</button>
+
+                                }
+                                else
+                                {
+                                    <button class="nav-link" id="Salary-tab" data-bs-toggle="tab" data-bs-target="#Salary" type="button" role="tab" aria-controls="Salary" aria-selected="false">Salary</button>
+                                }
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                @if (showPosition == true)
+                                {
+                                    <button class="nav-link active " id="Position-tab" data-bs-toggle="tab" data-bs-target="#Position" type="button" role="tab" aria-controls="Position" aria-selected="true">Position</button>
+
+                                }
+                                else
+                                {
+                                    <button class="nav-link " id="Position-tab" data-bs-toggle="tab" data-bs-target="#Position" type="button" role="tab" aria-controls="Position" aria-selected="false">Position</button>
+
+                                }
+                            </li>
+                        </ul>
+                        <div class="tab-content col-xl-5 col-lg-6 col-md-7 col-xs-12" id="UserTabContent">
+                            <div class="tab-pane fade @showPassportStr" id="Passport" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="mb-3">
+                                    <label asp-for="Employee.CardNo" class="form-label">CARD NO</label>
+                                    <input type="text" class="form-control" asp-for="Employee.CardNo" placeholder="XXXXXXXXX">
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="Employee.CardNo"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="Employee.PersonalNo" class="form-label">PERSONAL NO</label>
+                                    <input type="text" class="form-control" asp-for="Employee.PersonalNo" placeholder="XXXXXXX">
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="Employee.PersonalNo"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="BirthDate" class="form-label">DATE OF BIRTH</label>
+                                    <input type="date" class="form-control" asp-for="BirthDate" placeholder="02.02.2022">
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="BirthDate"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="ExpireDate" class="form-label">EXPIRE DATE</label>
+                                    <input type="date" class="form-control" asp-for="ExpireDate" placeholder="02.02.2022">
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="ExpireDate"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="NationalityId" class="form-label">NATIONALITY</label>
+                                    <select class="form-select" asp-for="NationalityId">
+                                        <option value="">Select nationality...</option>
+                                        @foreach (Nationality item in nationalities)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="NationalityId"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="Employee.FinCode" class="form-label">FIN CODE</label>
+                                    <input type="text" class="form-control" asp-for="Employee.FinCode" placeholder="XXXXXXX">
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="Employee.FinCode"></span>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade @showContactStr" id="Contact" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="mb-3">
+                                    <label asp-for="Employee.Email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" asp-for="Employee.Email" placeholder="email@mail.com">
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="Employee.Email"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="Employee.PhoneNumber" class="form-label">Phone Number</label>
+                                    <input type="text" class="form-control" asp-for="Employee.PhoneNumber" placeholder="+994(000)1234567">
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="Employee.PhoneNumber"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="Employee.HomeNumber" class="form-label">Home Number</label>
+                                    <input type="text" class="form-control" asp-for="Employee.HomeNumber" placeholder="0121234567">
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="Employee.HomeNumber"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="Employee.Address" class="form-label">Address</label>
+                                    <input type="text" class="form-control" asp-for="Employee.Address" placeholder="R. Behbudov Kuc. 65 Az1014">
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="Employee.Address"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="Employee.ZipCode" class="form-label">Zip Code</label>
+                                    <input type="text" class="form-control" asp-for="Employee.ZipCode" placeholder="Az0000">
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="Employee.ZipCode"></span>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade @showSalarytStr" id="Salary" role="tabpanel" aria-labelledby="Salary-tab">
+                                <div class="mb-3">
+                                    <label asp-for="SalaryAmount" class="form-label">Earning</label>
+                                    <input type="text" class="form-control" asp-for="SalaryAmount" placeholder="999 $">
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="SalaryAmount"></span>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade @showPositionStr" id="Position" role="tabpanel" aria-labelledby="Position-tab">
+                                <div class="mb-3">
+                                    <label asp-for="SectorId" class="form-label">Sectors</label>
+                                    <select class="form-select" id="Sector" asp-for="SectorId">
+                                        <option value="">Select sector...</option>
+                                        @foreach (Sector item in sectors)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="SectorId"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="DepartmentId" class="form-label">Departments</label>
+                                    <select asp-for="DepartmentId" class="form-select" id="Department">
+                                        @foreach(Department item in departments)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="DepartmentId"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="JobId" class="form-label">Job</label>
+                                    <select asp-for="JobId" class="form-select" id="Job">
+                                        @foreach (Job item in jobs)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="JobId"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="JobPositionId" class="form-label">Job Position</label>
+                                    <select asp-for="JobPositionId" class="form-select" id="JobPosition">
+                                        @foreach (JobPosition item in jobPositions)
+                                        {
+                                            <option value="@item.Id">@item.Position.Name</option>
+                                        }
+                                    </select>
+                                    <span class="text-danger invalid-input-text mt-1" asp-validation-for="JobPositionId"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 user-bot-con">
+                        <div class="row">
+                            <button class="btn btn-cancel">Cancel</button>
+                            <button class="btn btn-apply" id="ApplyBtn" type="submit">Apply and Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+@section Scripts
+{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var settings = {
+            errorClass: "is-invalid"
+        };
+        $.validator.setDefaults(settings);
+        $.validator.unobtrusive.options = settings;
+    </script>
+    <script src="~/js/CreateEmployeeValidation.js"></script>
+}
+

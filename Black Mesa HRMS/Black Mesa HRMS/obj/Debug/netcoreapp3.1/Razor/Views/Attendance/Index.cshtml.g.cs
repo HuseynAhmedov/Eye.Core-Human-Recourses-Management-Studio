@@ -26,8 +26,22 @@ using Black_Mesa_HRMS.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\Huseyn\source\repos\Black Mesa HRMS\Black Mesa HRMS\Views\_ViewImports.cshtml"
+using Black_Mesa_HRMS.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\Huseyn\source\repos\Black Mesa HRMS\Black Mesa HRMS\Views\_ViewImports.cshtml"
+using Black_Mesa_HRMS.Services;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c328999b6358efd19abbe73adf2dfb8eba2d2d61", @"/Views/Attendance/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a51f5bb0227a3f9e499a109e035782c5ef091e17", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0a1e48472f57e3847419bfa6705d7cd0e497bd12", @"/Views/_ViewImports.cshtml")]
     public class Views_Attendance_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "1", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -256,7 +270,7 @@ using Black_Mesa_HRMS.Models;
             <div class=""modal-body"">
                 <div class=""employee-salary-modal-con"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c328999b6358efd19abbe73adf2dfb8eba2d2d6115274", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c328999b6358efd19abbe73adf2dfb8eba2d2d6115676", async() => {
                 WriteLiteral(@"
                         <div class=""form-floating mb-3"">
                             <input type=""email"" class=""form-control"" id=""floatingInput"" placeholder=""name@example.com"">
@@ -265,7 +279,7 @@ using Black_Mesa_HRMS.Models;
                         <div class=""form-floating"">
                             <select class=""form-select"" id=""floatingSelect"" aria-label=""Floating label select example"">
                                 ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c328999b6358efd19abbe73adf2dfb8eba2d2d6116048", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c328999b6358efd19abbe73adf2dfb8eba2d2d6116450", async() => {
                     WriteLiteral("ID");
                 }
                 );
@@ -282,7 +296,7 @@ using Black_Mesa_HRMS.Models;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c328999b6358efd19abbe73adf2dfb8eba2d2d6117414", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c328999b6358efd19abbe73adf2dfb8eba2d2d6117816", async() => {
                     WriteLiteral("FullName");
                 }
                 );
@@ -298,7 +312,7 @@ using Black_Mesa_HRMS.Models;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c328999b6358efd19abbe73adf2dfb8eba2d2d6118672", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c328999b6358efd19abbe73adf2dfb8eba2d2d6119074", async() => {
                     WriteLiteral("Total Absent");
                 }
                 );
@@ -357,7 +371,7 @@ using Black_Mesa_HRMS.Models;
             <div class=""modal-body"">
                 <div class=""employee-salary-modal-con"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c328999b6358efd19abbe73adf2dfb8eba2d2d6122520", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c328999b6358efd19abbe73adf2dfb8eba2d2d6122922", async() => {
                 WriteLiteral(@"
                         <div class=""mb-3"">
                             <label for=""exampleFormControlInput1"" class=""form-label"">Edit Attendance for</label>
@@ -412,7 +426,7 @@ using Black_Mesa_HRMS.Models;
 ");
             DefineSection("Scripts", async() => {
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c328999b6358efd19abbe73adf2dfb8eba2d2d6125885", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c328999b6358efd19abbe73adf2dfb8eba2d2d6126287", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

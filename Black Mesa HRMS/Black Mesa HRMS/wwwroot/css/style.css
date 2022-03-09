@@ -137,10 +137,17 @@
 
 .form-signin form {
   z-index: 3;
-  height: 524px;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
   padding: 1rem;
   border-radius: 7px;
   border: 1px solid #8e8d8a;
+}
+
+.form-signin form a {
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .form-signin form img {
@@ -2248,9 +2255,11 @@ table {
   transition: .2s all;
   border-radius: 50%;
   max-width: 240px;
-  width: 200px;
+  width: 180px;
   height: 180px;
   max-height: 240px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 #UserProfile .user-profile-con .user-profile-mid-con .row .user-mid-con .active {
@@ -2336,30 +2345,6 @@ table {
   font-family: 'Poppins', sans-serif;
 }
 
-#UserEdit .user-profile-con .user-profile-top-con .btn {
-  -webkit-transition: .2s all;
-  transition: .2s all;
-  font-weight: 500;
-  font-size: 16px !important;
-  font-family: 'Poppins', sans-serif;
-  color: white;
-  background-color: #e85a4f;
-}
-
-#UserEdit .user-profile-con .user-profile-top-con .btn i {
-  margin-left: 7px;
-}
-
-#UserEdit .user-profile-con .user-profile-top-con .btn:hover {
-  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-          box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-}
-
-#UserEdit .user-profile-con .user-profile-top-con .btn:focus {
-  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-          box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-}
-
 #UserEdit .user-profile-con .user-profile-mid-con {
   margin-top: 1rem;
 }
@@ -2391,6 +2376,30 @@ table {
           align-items: flex-start;
 }
 
+#UserEdit .user-profile-con .user-profile-mid-con .row .user-top-con .row .btn {
+  -webkit-transition: .2s all;
+  transition: .2s all;
+  font-weight: 500;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  background-color: #e85a4f;
+}
+
+#UserEdit .user-profile-con .user-profile-mid-con .row .user-top-con .row .btn i {
+  margin-left: 7px;
+}
+
+#UserEdit .user-profile-con .user-profile-mid-con .row .user-top-con .row .btn:hover {
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+#UserEdit .user-profile-con .user-profile-mid-con .row .user-top-con .row .btn:focus {
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
 #UserEdit .user-profile-con .user-profile-mid-con .row .user-top-con .row .info-con {
   font-family: 'Open-sans', sans-serif;
 }
@@ -2411,9 +2420,11 @@ table {
   transition: .2s all;
   border-radius: 50%;
   max-width: 240px;
-  width: 200px;
+  width: 180px;
   height: 180px;
   max-height: 240px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 #UserEdit .user-profile-con .user-profile-mid-con .row .user-mid-con .active {
@@ -2505,5 +2516,10 @@ table {
   padding: 0;
   cursor: pointer;
   opacity: 0;
+}
+
+.invalid-input-text {
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
 }
 /*# sourceMappingURL=style.css.map */
