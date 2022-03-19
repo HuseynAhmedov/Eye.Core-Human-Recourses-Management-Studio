@@ -7,7 +7,7 @@ namespace Black_Mesa_HRMS.Models
     {
         public int Id { get; set; }
         public float Amount { get; set; }
-        public DateTime UntilDate { get; set; }
+        public DateTime? UntilDate { get; set; }
         public Employee Employee { get; set; }
         public int EmployeeId { get; set; }
     }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Black_Mesa_HRMS.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Black_Mesa_HRMS.Models
 {
@@ -9,5 +10,6 @@ namespace Black_Mesa_HRMS.Models
         public int DepartmentId { get; set; }
         [StringLength(maximumLength: 100)]
         public string Name { get; set; }
+        public JobType Type { get; set; }
     }
 }

@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@inject LayoutService layoutService
+@{
+    string userImageName = await layoutService.GetUserImage(User.Identity.Name);
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -89,7 +94,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link sign-out-btn" href="">
+                                    <a asp-action="Logout" asp-controller="Account" class="nav-link sign-out-btn">
                                         <span>Sign Out</span>
                                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                     </a>
@@ -111,8 +116,15 @@
                 <div class="d-flex flex-column flex-shrink-0" style="width: 4.5rem;">
                     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
                         <li class="nav-item">
-                            <a asp-action="index" asp-controller="Employee" class="d-block p-3 link-dark text-decoration-none " title="" data-bs-toggle="tooltip" data-bs-placement="right">
-                                <img src="~/Image/user.png" alt="user image">
+                            <a asp-action="Profile" asp-controller="Account" class="d-block p-3 link-dark text-decoration-none " title="" data-bs-toggle="tooltip" data-bs-placement="right">
+                                @if (string.IsNullOrEmpty(userImageName) || string.IsNullOrWhiteSpace(userImageName))
+                                {
+                                    <img src="~/Image/user.png" alt="user image">
+                                }
+                                else
+                                {
+                                    <img src="~/upload/userImage/@userImageName" alt="user image">
+                                }
                             </a>
                         </li>
                         <hr>
@@ -261,6 +273,7 @@
     <!--Layout plugin js-->
     <script src="~/js/digital.js"></script>
     <script src="~/js/layout.js"></script>
+    @await Component.InvokeAsync("Notyf")
 
     <!--Main content js cdn-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

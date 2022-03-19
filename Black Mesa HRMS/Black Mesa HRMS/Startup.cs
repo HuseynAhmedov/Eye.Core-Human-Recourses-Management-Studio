@@ -1,3 +1,4 @@
+using AspNetCoreHero.ToastNotification;
 using Black_Mesa_HRMS.Models;
 using Black_Mesa_HRMS.Services;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,7 @@ namespace Black_Mesa_HRMS
             });
             services.AddHttpContextAccessor();
             services.AddScoped<EmployeeFormService>();
+            services.AddScoped<LayoutService>();
             services.AddIdentity<AppUser, IdentityRole>(opt =>
             {
                 opt.Password.RequireDigit = false;
@@ -40,6 +42,7 @@ namespace Black_Mesa_HRMS
                 opt.Password.RequiredUniqueChars = 0;
                 opt.Password.RequireNonAlphanumeric = false;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
+            services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.TopRight; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,9 +60,8 @@ namespace Black_Mesa_HRMS
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

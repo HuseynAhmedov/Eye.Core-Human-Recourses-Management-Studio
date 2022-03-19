@@ -9,14 +9,19 @@ namespace Black_Mesa_HRMS.Helper
 {
     public class RandomGeneratorManager
     {
-        public string RandomPasswordBuilder(int size = 0)
+        public string RandomPasswordBuilder(int size = 11)
         {
             Random randomGen = new Random();
             StringBuilder builder = new StringBuilder();
-            builder.Append(RandomString(4, true));
-            builder.Append(randomGen.Next(1000, 9999));
-            builder.Append(RandomString(2, false));
-            return builder.ToString();
+            do
+            {
+                builder.Append(RandomString(4, true));
+                builder.Append(randomGen.Next(1000, 9999));
+                builder.Append(RandomString(2, false));
+            }while(builder.ToString().Length < size);
+            string randomStr = builder.ToString();
+            randomStr = randomStr.Substring(0, size);
+            return randomStr;
         }
 
         public string RandomString(int size, bool lowerCase)

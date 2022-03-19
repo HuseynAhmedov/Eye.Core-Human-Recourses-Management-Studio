@@ -1,8 +1,8 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "All Employees";
 }
-
+@model AllEmployeesVM
 <section id="AllEmployee">
     <section class="all-employee-con">
         <div class="table-top">
@@ -23,103 +23,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>101</td>
-                        <td>Gordon Freeman</td>
-                        <td>D</td>
-                        <td>Anomalous Materials Lab</td>
-                        <td>Associate Scientist</td>
-                        <td>Manager</td>
-                        <td>
-                            <a href="#" type="button" class=" btn table-btn">Profile</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>101</td>
-                        <td>Gordon Freeman</td>
-                        <td>D</td>
-                        <td>Anomalous Materials Lab</td>
-                        <td>Associate Scientist</td>
-                        <td>Manager</td>
-                        <td>
-                            <a href="#" type="button" class=" btn table-btn">Profile</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>101</td>
-                        <td>Gordon Freeman</td>
-                        <td>D</td>
-                        <td>Anomalous Materials Lab</td>
-                        <td>Associate Scientist</td>
-                        <td>Manager</td>
-                        <td>
-                            <a href="#" type="button" class=" btn table-btn">Profile</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>101</td>
-                        <td>Gordon Freeman</td>
-                        <td>D</td>
-                        <td>Anomalous Materials Lab</td>
-                        <td>Associate Scientist</td>
-                        <td>Manager</td>
-                        <td>
-                            <a href="#" type="button" class=" btn table-btn">Profile</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>101</td>
-                        <td>Gordon Freeman</td>
-                        <td>D</td>
-                        <td>Anomalous Materials Lab</td>
-                        <td>Associate Scientist</td>
-                        <td>Manager</td>
-                        <td>
-                            <a href="#" type="button" class=" btn table-btn">Profile</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>101</td>
-                        <td>Gordon Freeman</td>
-                        <td>D</td>
-                        <td>Anomalous Materials Lab</td>
-                        <td>Associate Scientist</td>
-                        <td>Manager</td>
-                        <td>
-                            <a href="#" type="button" class=" btn table-btn">Profile</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>101</td>
-                        <td>Gordon Freeman</td>
-                        <td>D</td>
-                        <td>Anomalous Materials Lab</td>
-                        <td>Associate Scientist</td>
-                        <td>Manager</td>
-                        <td>
-                            <a href="#" type="button" class=" btn table-btn">Profile</i></a>
-                        </td>
-                    </tr>
+                    @foreach (AllEmployeesTM item in Model.AllEmployeesTMs)
+                    {
+                        <tr>
+                            <td scope="row">@Model.AllEmployeesTMs.IndexOf(item)</td>
+                            <td>@item.EmployeeId</td>
+                            <td>@item.EmployeeName</td>
+                            <td>@item.SectorName</td>
+                            <td>@item.DepartmentName</td>
+                            <td>@item.JobName</td>
+                            <td>@item.PositionName</td>
+                            <td>
+                                <a asp-action="Index" asp-controller="Employee" asp-route-id="@item.EmployeeId" type="button" class=" btn table-btn">Profile</a>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
         <div class="table-bottom">
-            <nav>
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-            </nav>
+            @{await Html.RenderPartialAsync("_PageNation", Model.PageNation);}
         </div>
     </section>
 </section>
@@ -132,33 +55,42 @@
             </div>
             <div class="modal-body">
                 <div class="employee-salary-modal-con">
-                    <form action="" id="FilterDataModal">
+                    <form id="modal-details" method="post" asp-action="index">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <input type="text" class="form-control" asp-for="KeyWord">
                             <label for="floatingInput">ID or FullName</label>
                         </div>
+                        <span class="text-danger invalid-input-text mt-1" asp-validation-for="KeyWord"></span>
                         <div class="form-floating">
-                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                <option selected>ID</option>
-                                <option value="1">FullName</option>
-                                <option value="2">Department</option>
-                                <option value="3">Job Title</option>
-                                <option value="4">Job Position</option>
+                            <select class="form-select" asp-for="SortBy">
+                                <option value="1">ID</option>
+                                <option value="2">FullName</option>
+                                <option value="3">Department</option>
+                                <option value="4">Job Title</option>
+                                <option value="5">Job Position</option>
                             </select>
-                            <label for="floatingSelect">Sort By</label>
+                            <label asp-for="SortBy">Sort By</label>
                         </div>
                         <div class="form-check form-switch mt-2">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Sort Descending</label>
+                            <input class="form-check-input" type="checkbox" role="switch" asp-for="SortDescending">
+                            <label class="form-check-label" asp-for="SortDescending">Sort Descending</label>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn-cancel-modal" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" id="FilterDataModalAddBtn" class="btn-apply-modal">Search</button>
+                <button type="submit" form="modal-details"  class="btn-apply-modal" >Search</button>
             </div>
         </div>
     </div>
 </div>
 
+@section Scripts
+{
+    <script>
+        function form_submit() {
+            document.getElementById("FilterDataModal").submit();
+        }
+    </script>
+}

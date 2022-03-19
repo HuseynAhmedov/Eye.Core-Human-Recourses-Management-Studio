@@ -11,6 +11,7 @@ namespace Black_Mesa_HRMS.Models
         public JobPosition JobPosition { get; set; }
         public int JobPositionId { get; set; }
         public AppUser AppUser { get; set; }
+
         [StringLength(50)]
         [Required(AllowEmptyStrings = false , ErrorMessage = "Name is required")]
         public string Name { get; set; }
@@ -44,7 +45,6 @@ namespace Black_Mesa_HRMS.Models
         [StringLength(6 , ErrorMessage = "ZipCode cannot be longer than 6 characters ")]
         public string ZipCode { get; set; }
         public bool Fired { get; set; }
-        public string signInId { get; set; }
         public DateTime EmployedDate { get; set; }
         public DateTime? FiredDate { get; set; }
         public string Image { get; set; }

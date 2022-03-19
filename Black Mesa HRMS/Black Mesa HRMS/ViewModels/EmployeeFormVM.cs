@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Black_Mesa_HRMS.ViewModels
 {
-    public class CreateEmployeeVM
+    public class EmployeeFormVM
     {
         public Employee Employee { get; set; }
         [Required(ErrorMessage = "Sector is Requried")]

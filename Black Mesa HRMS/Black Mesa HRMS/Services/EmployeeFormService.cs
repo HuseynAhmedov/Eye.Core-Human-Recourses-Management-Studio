@@ -42,5 +42,11 @@ namespace Black_Mesa_HRMS.Services
             List<JobPosition> jobPositions = _context.JobPositions.Include(x => x.Position).Where(y => y.JobId == jobId).ToList();
             return jobPositions;
         }
+
+        public List<Attendance> GetAttendances(int employeeId , DateTime MonthFor)
+        {
+            List<Attendance> attendances = _context.Attendances.Where(x => x.EmployeeId == employeeId && x.DateFor > MonthFor && x.DateFor < MonthFor.AddMonths(1)).ToList();
+            return attendances;
+        }
     }
 }

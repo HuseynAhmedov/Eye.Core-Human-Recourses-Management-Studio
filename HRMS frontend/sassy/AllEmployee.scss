@@ -1,0 +1,117 @@
+$base-color : #eae7dc;
+$base-color-light :ghostwhite;
+$base-color-dark : #d8c3a5;
+$text-color-light : #8e8d8a;
+$link-color : #e98074;
+$link-color-active : #e85a4f;
+$notification-color-info: dodgerblue;
+$notification-color-warning : gold	;
+$notification-color-success : seagreen;
+
+
+.table-btn 
+{
+    transition: .2s all;
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    border: 1px solid $text-color-light !important;
+    width: fit-content;
+}
+.table-btn:hover
+{
+    background-color: white;
+  transform: scale(102%);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.table-btn:focus
+{
+  background-color: white;
+  transform: scale(102%);  
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px !important;
+}
+
+@media screen and (max-width: 840px)
+{
+	.table-con
+    {
+        max-width: 92rem !important;
+        overflow: scroll !important;
+        overflow-y: hidden !important; 
+        .table
+        {
+            width: max-content !important;
+        }
+    }
+}
+#AllEmployee
+{
+    padding: 1rem;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    min-height: 100%;
+    .table-top
+    {
+        span 
+        {
+            font-weight: 500;
+            font-size: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+        display: flex;
+        margin-bottom: 1rem;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .table-con
+    {
+        margin-bottom: 2rem;
+        .table 
+        {
+            tbody
+            {
+                border-top: 2px $text-color-light solid;
+                border-bottom: 2px $text-color-light solid;
+            }
+            font-family: 'Open Sans', sans-serif;
+            //color: #e85a4f;
+            --bs-table-hover-bg:#e8594f44;
+            //--bs-table-hover-color:#e85a4f;
+            --bs-table-striped-bg:#e980742f;
+            border-color: $text-color-light;
+            th 
+            {
+                font-size: 20px;
+                font-weight: 600;
+            }
+            td
+            {
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
+    }
+    .table-bottom
+    {
+        display: flex;
+        justify-content: center;
+        .pagination
+        {
+            .page-link
+            {
+                transition: .2s all;
+                font-family: 'Poppins', sans-serif;
+                color: black;
+            }
+            .page-link:hover
+            {
+                background-color: $link-color-active ;
+                color: white ;
+            }
+            .page-link:focus
+            {
+                box-shadow: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,129 @@
+$base-color : #eae7dc;
+$base-color-light :ghostwhite;
+$base-color-dark : #d8c3a5;
+$text-color-light : #8e8d8a;
+$link-color : #e98074;
+$link-color-active : #e85a4f;
+$notification-color-info: dodgerblue;
+$notification-color-warning : gold	;
+$notification-color-success : seagreen;
+
+#AttendanceTable
+{
+    padding: 1rem;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    min-height: 100%;
+    .table-top
+    {
+        span 
+        {
+            font-weight: 500;
+            font-size: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+        display: flex;
+        margin-bottom: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        .search-form
+        {
+            .btn
+            {
+                i 
+                {
+                    margin-left: 5px;
+                }
+                min-width: fit-content;
+                color: $text-color-light;
+                font-size: 16px;
+                font-family: 'Poppins', sans-serif;
+                transition: .2s all ;
+                border: 1px solid $link-color-active;
+                font-weight: 500;
+            }
+            .btn:hover 
+            {
+                color: white;
+                background-color: $link-color-active;
+                border-color: $link-color-active;
+            }
+            .btn:focus
+            {
+                box-shadow: none !important;
+            }
+        }
+    }
+    .table-con
+    {
+        margin-bottom: 2rem;
+        max-width: 92rem;
+        overflow: scroll;
+        overflow-y: hidden;
+        .table 
+        {
+            width: max-content;
+            tbody
+            {
+                border-top: 2px $text-color-light solid;
+                border-bottom: 2px $text-color-light solid;
+            }
+            font-family: 'Open Sans', sans-serif;
+            //color: #e85a4f;
+            --bs-table-hover-bg:#e8594f44;
+            //--bs-table-hover-color:#e85a4f;
+            --bs-table-striped-bg:#e980742f;
+            border-color: $text-color-light;
+            th 
+            {
+                position: relative;
+                min-width: 40px;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 600;  
+            }
+            td
+            {
+                font-size: 16px;
+                font-weight: 400;
+                .table-action
+                {
+                    display: flex;
+                    justify-content: flex-start;
+                    column-gap: 1rem;
+                    a 
+                    {
+                        color: black;
+                        text-decoration: none;
+                        font-size: 20px;
+                        padding: 0px 5px;
+                    }
+                }
+            }
+        }
+    }
+    .table-bottom
+    {
+        display: flex;
+        justify-content: center;
+        .pagination
+        {
+            .page-link
+            {
+                transition: .2s all;
+                font-family: 'Poppins', sans-serif;
+                color: black;
+            }
+            .page-link:hover
+            {
+                background-color: $link-color-active ;
+                color: white ;
+            }
+            .page-link:focus
+            {
+                box-shadow: none;
+            }
+        }
+    }
+}

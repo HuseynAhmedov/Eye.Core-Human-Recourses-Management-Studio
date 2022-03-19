@@ -1,8 +1,8 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Dashboard";
 }
-
+@model DashBoardVM
 <section class="general-info-con">
     <div class="row">
         <section id=DashboardTopCards class="col-xxl-3 col-12">
@@ -15,7 +15,7 @@
                             </div>
                             <div class="card-context">
                                 <h5 class="card-title">New Employee</h5>
-                                <p class="card-text">0</p>
+                                <p class="card-text">@Model.EmployeeCountNew</p>
                             </div>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                             </div>
                             <div class="card-context">
                                 <h5 class="card-title">Total Employee</h5>
-                                <p class="card-text">0</p>
+                                <p class="card-text">@Model.EmployeeCount</p>
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="card-context">
                                 <h5 class="card-title">Total Salary</h5>
-                                <p class="card-text">0 $ </p>
+                                <p class="card-text">@Model.TotalSalary $ </p>
                             </div>
                         </div>
                     </div>
@@ -47,8 +47,8 @@
                                 <i class="fa-solid fa-wallet"></i>
                             </div>
                             <div class="card-context">
-                                <h5 class="card-title">Saveings</h5>
-                                <p class="card-text">9999 $</p>
+                                <h5 class="card-title">Budget</h5>
+                                <p class="card-text">@Model.Budget $</p>
                             </div>
                         </div>
                     </div>
@@ -74,28 +74,35 @@
                                 <div class="list-context">
                                     <span class="color-con " style="background-color: rgb(204, 0, 255) ;"></span>
                                     <span class="text-con ">Total Scientist salary</span>
-                                    <span class="salary-con "> 999 $</span>
+                                    <span class="salary-con ">@Model.TotalScientistSalary $</span>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="list-context">
                                     <span class="color-con " style="background-color: rgb(25, 0, 255) ;"></span>
                                     <span class="text-con ">Total Security salary</span>
-                                    <span class="salary-con "> 999 $</span>
+                                    <span class="salary-con ">@Model.TotalSecuritySalary $</span>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="list-context">
+                                    <span class="color-con " style="background-color: rgb(32,178,170); "></span>
+                                    <span class="text-con ">Total Security salary</span>
+                                    <span class="salary-con ">@Model.TotalSafetySalary $</span>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="list-context">
                                     <span class="color-con " style="background-color: rgb(255, 0, 0) ;"></span>
                                     <span class="text-con ">Total Administration salary</span>
-                                    <span class="salary-con "> 999 $</span>
+                                    <span class="salary-con ">@Model.TotalAdministrationSalary $</span>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="list-context">
                                     <span class="color-con " style="background-color: rgb(255, 196, 0) ;"></span>
                                     <span class="text-con ">Total Maintenance salary</span>
-                                    <span class="salary-con "> 999 $</span>
+                                    <span class="salary-con ">@Model.TotalMaintenanceSalary $</span>
                                 </div>
                             </li>
                         </ul>

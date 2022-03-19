@@ -1,0 +1,109 @@
+$base-color : #eae7dc;
+$base-color-light :ghostwhite;
+$base-color-dark : #d8c3a5;
+$text-color-light : #8e8d8a;
+$link-color : #e98074;
+$link-color-active : #e85a4f;
+$notification-color-info: dodgerblue;
+$notification-color-warning : gold	;
+$notification-color-success : seagreen;
+
+#WorkCalendar
+{
+    padding: 1rem;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    min-height: 100%;
+    .WorkCalendar-con
+    {
+        .calendar-top
+        {
+           span 
+           {
+               font-weight: 500;
+               font-size: 20px;
+               font-family: 'Poppins', sans-serif;
+           }
+           .add-event-btn
+           {
+              transition: .2s all ;
+              font-weight: 500;
+              font-family: 'Poppins', sans-serif;
+              color: white;
+              background-color: $link-color-active;
+              i 
+              {
+                  margin-left: 7px;
+              }
+           }
+           .add-event-btn:hover
+           {
+             box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+           }
+           .add-event-btn:focus
+           {
+             box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+           }
+
+
+           display: flex;
+           margin-bottom: 1rem;
+           justify-content: space-between;
+           align-items: center;
+        }
+        #calendar
+        {
+            .fc-event-title
+            {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 400;
+                font-size: 18px;
+            }
+            .fc-button
+            {
+                background-color: $link-color-active;
+                border: none;
+            }
+            .fc-button:focus
+            {
+                box-shadow: none;
+            }
+            .fc-today-button
+            {
+                background-color: $link-color-active;
+                font-weight: 500;
+                font-family: 'Poppins', sans-serif;
+                color: rgb(255, 255, 255);
+                border: none;
+            }
+            .fc-col-header-cell-cushion 
+            {
+                font-weight: 500;
+                font-family: 'Poppins', sans-serif;
+                text-decoration: none;
+                color: $link-color-active;
+            }
+            .fc-daygrid-day-number
+            {
+                font-size: 24px;
+                text-decoration: none;
+                font-weight: 500;
+                color: black;
+                font-family: 'Poppins', sans-serif;
+            }
+            .fc-toolbar-title
+            {
+                font-family: 'Poppins', sans-serif;
+            }
+            .fc-day-today
+            {
+                background-color: $link-color-active;
+                .fc-daygrid-day-number
+                {
+                    color: rgb(255, 255, 255);
+                }
+            }
+        }
+    }
+}

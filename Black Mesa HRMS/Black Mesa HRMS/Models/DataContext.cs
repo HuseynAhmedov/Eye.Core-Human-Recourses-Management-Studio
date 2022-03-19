@@ -25,5 +25,7 @@ namespace Black_Mesa_HRMS.Models
         public DbSet<Nationality> Nationalities { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<JobPosition> JobPositions { get; set; }
-    }
+        public DbSet<Todo> Todos { get; set; }
+        public DbSet<Budget> Budgets { get; set; }
+}
 }

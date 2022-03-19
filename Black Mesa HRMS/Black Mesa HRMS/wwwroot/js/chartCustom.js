@@ -7,52 +7,81 @@ const SalaryByDateChart = document.getElementById('SalaryByDateChartjs').getCont
 let monthViewBtnSalaryChartjs = document.getElementsByClassName("month-view-btn-ES")
 let yearViewBtnSalaryChartjs = document.getElementsByClassName("year-view-btn-ES")
 
-const IncomeChartConfig = new Chart(IncomeChart, {
-    type: 'doughnut',
-    data:{
-        labels: [
-            'Scientist',
-            'Security',
-            'Administration',
-            'Maintenance',
-        ],
-        datasets: [{
-          label: 'My First Dataset',
-          data: [50, 10, 10, 30],
-          backgroundColor: [
-            'rgb(204, 0, 255)',
-            'rgb(25, 0, 255)',
-            'rgb(255, 0, 0)',
-            'rgb(255, 196, 0)',
-          ],
-          hoverOffset: 4
-        }]
-    },
-    options: {
-        maintainAspectRatio: false
-    }
-});
+GetSalaryByPercentage();
+GetGenderCount();
 
-const GenderChartConfig = new Chart(GenderChart, {
-    type: 'pie',
-    data: {
-        labels: [
-          'Women',
-          'Men',
-        ],
-        datasets: [{
-          data: [39, 412],
-          backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)'
-          ],
-          hoverOffset: 4
-        }]
-    },
-    options: {
-        maintainAspectRatio: false
-    }
-});
+//var url = "Home/GetSalaryPerMonth?" + $.param({ jobType: 4, yearFor: 2022 })
+//fetch(url)
+
+async function GetSalaryByPercentage()
+{
+    const response = await fetch('Home/GetSalaryByPercentage');
+    const data = await response.json();
+
+    values = [];
+    values.push(data.Scientist);
+    values.push(data.Security);
+    values.push(data.Safety);
+    values.push(data.Maintenance);
+    values.push(data.Administration);
+    new Chart(IncomeChart, {
+        type: 'doughnut',
+        data: {
+            labels: [
+                'Scientist',
+                'Security',
+                'Administration',
+                'Maintenance',
+                'Safety'
+            ],
+            datasets: [{
+                label: 'Salary By Percentage',
+                data: values,
+                backgroundColor: [
+                    'rgb(204, 0, 255)',
+                    'rgb(25, 0, 255)',
+                    'rgb(255, 0, 0)',
+                    'rgb(255, 196, 0)',
+                    'rgb(32,178,170)'
+                ],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            maintainAspectRatio: false
+        }
+    });
+}
+
+async function GetGenderCount() {
+    const response = await fetch('Home/GetGenderCount');
+    const data = await response.json();
+
+    values = [];
+    values.push(data.Female);
+    values.push(data.Male);
+    
+    new Chart(GenderChart, {
+        type: 'pie',
+        data: {
+            labels: [
+                'Female',
+                'Male',
+            ],
+            datasets: [{
+                data: values,
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)'
+                ],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            maintainAspectRatio: false
+        }
+    });
+}
 
 var SalaryByMonthData = {
     labels: [

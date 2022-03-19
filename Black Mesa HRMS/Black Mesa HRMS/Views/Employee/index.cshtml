@@ -1,27 +1,41 @@
 ﻿
 @{
-    ViewData["Title"] = "index";
+    ViewData["Title"] = "Index";
 }
-
+@model EmployeeFormInfoVM
 <section id="UserProfile">
     <div class="user-profile-con">
         <div class="user-profile-top-con">
             <span>Profile</span>
-            <a href="" class="btn ">Edit Profile</a>
+            <a asp-action="Edit" asp-controller="Employee" asp-route-id="@Model.Employee.Id" class="btn">Edit Profile</a>
         </div>
         <div class="user-profile-mid-con">
             <div class="row">
                 <div class="col-12 user-top-con">
                     <div class="row">
                         <div class="col info-con">
-                            <p><span class="header">ID :</span>99999</p>
-                            <p><span class="header">Name :</span>Gordon</p>
-                            <p><span class="header">Surname :</span>Freeman</p>
-                            <p><span class="header">Gender :</span>Male</p>
-                            <p><span class="header">Age :</span>99</p>
+                            <p><span class="header">ID :</span>@Model.Employee.Id</p>
+                            <p><span class="header">UserName :</span>@User.Identity.Name</p>
+                            <p><span class="header">Name :</span>@Model.Employee.Name</p>
+                            <p><span class="header">Surname :</span>@Model.Employee.Surname</p>
+                            @if (Model.Employee.Gender == true)
+                            {
+                                <p><span class="header">Gender :</span>Male</p>
+                            }
+                            else
+                            {
+                                <p><span class="header">Gender :</span>Female</p>
+                            }
                         </div>
                         <div class="col d-flex justify-content-md-end justify-content-center image-con">
-                            <img src="~/image/user.png" class="col-sm-12" alt="user image">
+                            @if (string.IsNullOrEmpty(Model.Employee.Image) || string.IsNullOrWhiteSpace(Model.Employee.Image))
+                            {
+                                <img src="~/Image/user.png" class="col-sm-12" alt="user image">
+                            }
+                            else
+                            {
+                                <img src="~/upload/userImage/@Model.Employee.Image" class="col-sm-12" alt="user image">
+                            }
                         </div>
                     </div>
                 </div>
@@ -39,34 +53,112 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="Position-tab" data-bs-toggle="tab" data-bs-target="#Position" type="button" role="tab" aria-controls="Position" aria-selected="false">Position</button>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="Attendance-tab" data-bs-toggle="tab" data-bs-target="#Attendance" type="button" role="tab" aria-controls="Attendance" aria-selected="false">Attendance</button>
+                        </li>
                     </ul>
                     <div class="tab-content" id="UserTabContent">
                         <div class="tab-pane fade show active" id="Passport" role="tabpanel" aria-labelledby="home-tab">
-                            <p><span class="header">CARD NO :</span>AA1234567</p>
-                            <p><span class="header">PERSONAL NO :</span>802QE0Q</p>
-                            <p><span class="header">DATE OF BIRTH :</span>03.08.2001</p>
-                            <p><span class="header">EXPIRE DATE :</span>14.12.2028</p>
-                            <p><span class="header">NATIONALITY :</span>Azerbaijan</p>
-                            <p><span class="header">FIN CODE :</span>5VBK5VR</p>
+                            <p><span class="header">CARD NO :</span>@Model.Employee.CardNo</p>
+                            <p><span class="header">PERSONAL NO :</span>@Model.Employee.PersonalNo</p>
+                            <p><span class="header">DATE OF BIRTH :</span>@Model.Employee.BirthDate</p>
+                            <p><span class="header">EXPIRE DATE :</span>@Model.Employee.ExpireDate</p>
+                            <p><span class="header">NATIONALITY :</span>@Model.Employee.Nationality.Name</p>
+                            <p><span class="header">FIN CODE :</span>@Model.Employee.FinCode</p>
                         </div>
                         <div class="tab-pane fade" id="Contact" role="tabpanel" aria-labelledby="profile-tab">
-                            <p><span class="header">Email :</span>myemail@mail.com</p>
-                            <p><span class="header">Number :</span>+994(051)9842696</p>
-                            <p><span class="header">Home Number :</span>0123441212</p>
-                            <p><span class="header">Address :</span>R. Behbudov Kuc. 65 Az1014</p>
-                            <p><span class="header">Zip Code :</span>Az1014</p>
+                            <p><span class="header">Email :</span>@Model.Employee.Email</p>
+                            <p><span class="header">Number :</span>@(Model.Employee.PhoneNumber!= null? Model.Employee.PhoneNumber.ToString() : "N/A")</p>
+                            <p><span class="header">Home Number :</span>@(Model.Employee.HomeNumber!= null? Model.Employee.HomeNumber.ToString() : "N/A")</p>
+                            <p><span class="header">Address :</span>@(Model.Employee.Address!= null? Model.Employee.Address.ToString() : "N/A")</p>
+                            <p><span class="header">Zip Code :</span>@(Model.Employee.ZipCode!= null? Model.Employee.ZipCode.ToString() : "N/A")</p>
                         </div>
                         <div class="tab-pane fade" id="Salary" role="tabpanel" aria-labelledby="Salary-tab">
-                            <p><span class="header">Earning :</span>999 $</p>
-                            <p><span class="header">Salary Modified date :</span>02.02.2022</p>
-                            <p><span class="header">Total Bonus :</span>999 $</p>
-                            <p><span class="header">Last Bonus :</span>999 $</p>
+                            <p><span class="header">Earning :</span>@Model.SalaryAmount</p>
+                            <p><span class="header">Salary Modified date :</span>@(Model.SalaryLastModifiedDate!=null? Model.SalaryLastModifiedDate.ToString() : "N/A")</p>
+                            <p><span class="header">Total Bonus :</span>@(Model.TotalBonus!=null? Model.TotalBonus.ToString() : "N/A")</p>
+                            <p><span class="header">Last Bonus :</span>@(Model.LastBonus!=null? Model.LastBonus.ToString() : "N/A")</p>
                         </div>
                         <div class="tab-pane fade" id="Position" role="tabpanel" aria-labelledby="Position-tab">
-                            <p><span class="header">Sector :</span>D</p>
-                            <p><span class="header">Department :</span>material lab</p>
-                            <p><span class="header">Job Title :</span>Anti mass spectometr engineer</p>
-                            <p><span class="header">Job position :</span>Engineer </p>
+                            <p><span class="header">Sector :</span>@Model.SectorName</p>
+                            <p><span class="header">Department :</span>@Model.DepartmentName</p>
+                            <p><span class="header">Job Title :</span>@Model.JobName</p>
+                            <p><span class="header">Job Position :</span>@Model.JobPositionName</p>
+                        </div>
+                        <div class="tab-pane fade container-fluid p-0" id="Attendance" role="tabpanel" aria-labelledby="Attendance-tab">
+                            <section id="AttendanceTableEdit">
+                                <section class="attendance-table-con">
+                                    <div class="table-con">
+                                        <table class="table table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Date For</th>
+                                                    @for (int i = 1; i < DateTime.DaysInMonth(Model.AttendanceDateFor.Year, Model.AttendanceDateFor.Month); i++)
+                                                    {
+                                                        <th scope="col">@i</th>
+                                                    }
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td scope="col">
+                                                        @Model.AttendanceDateFor.ToString().Substring(0, 10)
+                                                    </td>
+                                                    @{ DateTime dateFilter = Model.AttendanceDateFor.AddDays(-Model.AttendanceDateFor.Day); int j = 0; int absensCount = 0; }
+                                                    @for (int i = 1; i < DateTime.DaysInMonth(Model.AttendanceDateFor.Year, Model.AttendanceDateFor.Month); i++)
+                                                    {
+                                                        dateFilter = dateFilter.AddDays(1);
+
+                                                        if (Model.AttendancesList.Count > j && (DateTime)Model.AttendancesList[j].DateFor.Date == dateFilter.Date)
+                                                        {
+                                                            AttendaceStatus status = Model.AttendancesList[j].Status;
+                                                            if (status == AttendaceStatus.Holiday || dateFilter.DayOfWeek == DayOfWeek.Sunday || dateFilter.DayOfWeek == DayOfWeek.Saturday)
+                                                            {
+                                                                <th scope="col">
+                                                                    <span class="attendance-status text-warning">H</span>
+                                                                </th>
+                                                            }
+                                                            else if (status == AttendaceStatus.Absent)
+                                                            {
+                                                                absensCount++;
+                                                                <th scope="col">
+                                                                    <span class="attendance-status text-danger">A</span>
+                                                                </th>
+                                                            }
+                                                            else if (status == AttendaceStatus.Present)
+                                                            {
+                                                                <th scope="col">
+                                                                    <span class="attendance-status text-success">P</span>
+                                                                </th>
+                                                            }
+                                                            else
+                                                            {
+                                                                <th scope="col">
+                                                                    <span class="attendance-status text-muted">N/A</span>
+                                                                </th>
+                                                            }
+                                                            j++;
+                                                        }
+                                                        else if (dateFilter.DayOfWeek == DayOfWeek.Sunday || dateFilter.DayOfWeek == DayOfWeek.Saturday)
+                                                        {
+                                                            <th scope="col">
+                                                                <span class="attendance-status text-warning">H</span>
+                                                            </th>
+                                                        }
+                                                        else
+                                                        {
+                                                            <th scope="col">
+                                                                <span class="attendance-status text-muted">N/A</span>
+                                                            </th>
+                                                        }
+                                                    }
+                                                </tr>
+                                                <p><span class="header">Total Absens :</span>@absensCount</p>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </section>
+                            </section>
                         </div>
                     </div>
                 </div>

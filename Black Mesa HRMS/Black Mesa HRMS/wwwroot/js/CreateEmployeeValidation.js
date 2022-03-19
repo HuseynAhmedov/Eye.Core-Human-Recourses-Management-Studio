@@ -64,7 +64,13 @@ JobInput.addEventListener("change", function (ev) {
 async function getDepartments(sectorId) {
     let url = `GetDepartments/${sectorId}`;
     try {
-        let res = await fetch(url);
+        let res = await fetch(url, 
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
         return await res.json();
     } catch (error) {
         return 404;

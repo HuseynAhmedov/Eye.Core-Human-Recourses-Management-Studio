@@ -22,80 +22,129 @@ namespace Black_Mesa_HRMS.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly DataContext _context;
-        private readonly SignInManager<AppUser> _signInManager;
         private readonly IWebHostEnvironment _env;
-        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public EmployeeController(UserManager<AppUser> userManager, DataContext context, SignInManager<AppUser> signInManager , IWebHostEnvironment env , RoleManager<IdentityRole> roleManager)
+        public EmployeeController(UserManager<AppUser> userManager, DataContext context, IWebHostEnvironment env )
         {
             _userManager = userManager;
             _context = context;
-            _signInManager = signInManager;
             _env = env;
-            _roleManager = roleManager;
         }
-        public ActionResult index()
+        public ActionResult Index(int id )
         {
-            return View();
+            EmployeeFormInfoVM formInfoVM = new EmployeeFormInfoVM();
+            formInfoVM.Employee = _context.Employees.Include(x => x.Nationality).Include(x => x.JobPosition).ThenInclude(x => x.Job).ThenInclude(x => x.Department).ThenInclude(x => x.Sector).FirstOrDefault(x => x.Id == id);
+            if (formInfoVM.Employee == null)
+            {
+                return StatusCode(404);
+            }
+            Salary salary = _context.Salaries.FirstOrDefault(x => x.Employee == formInfoVM.Employee && x.UntilDate == null);
+            if (salary != null)
+            {
+                formInfoVM.SalaryAmount = salary.Amount;
+            }
+            if (_context.Salaries.Where(x => x.Employee == formInfoVM.Employee && x.UntilDate != null).OrderBy(x => x.UntilDate).First() != null)
+            {
+                Salary pastSalary = _context.Salaries.Where(x => x.Employee == formInfoVM.Employee && x.UntilDate != null).OrderBy(x => x.UntilDate).First();
+                formInfoVM.SalaryLastModifiedDate = pastSalary.UntilDate;
+            }
+            List<Bonus> bonusList = _context.Bonuses.Where(x => x.Employee == formInfoVM.Employee).OrderBy(x => x.DateGiven).ToList();
+            if(bonusList.Count() != 0)
+            {
+                formInfoVM.LastBonus = bonusList[0].Amount;
+                foreach (Bonus item in bonusList)
+                {
+                    formInfoVM.TotalBonus += item.Amount;
+                }
+            }
+            
+            formInfoVM.JobPositionName = _context.Positions.FirstOrDefault(x => x.Id == formInfoVM.Employee.JobPosition.PositionId).Name; ;
+            formInfoVM.JobName = formInfoVM.Employee.JobPosition.Job.Name;
+            formInfoVM.DepartmentName = formInfoVM.Employee.JobPosition.Job.Department.Name;
+            formInfoVM.SectorName = formInfoVM.Employee.JobPosition.Job.Department.Sector.Name;
+            formInfoVM.AttendanceDateFor = DateTime.UtcNow;
+            formInfoVM.AttendancesList = _context.Attendances.Where(x => x.Employee == formInfoVM.Employee && x.DateFor > DateTime.UtcNow.AddDays(-DateTime.UtcNow.Day) && x.DateFor < DateTime.UtcNow.AddMonths(1).AddDays(-DateTime.UtcNow.Day)).OrderBy(x=> x.DateFor).ToList();
+            return View(formInfoVM);
         }
         public ActionResult Create()
         {
             TempData["Showtab"] = 1;
-            CreateEmployeeVM createEmployeeVM = new CreateEmployeeVM();
+            EmployeeFormVM createEmployeeVM = new EmployeeFormVM();
             return View(createEmployeeVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(CreateEmployeeVM newEmployee)
+        public async Task<ActionResult> Create(EmployeeFormVM newEmployee)
         {
             if (newEmployee.Employee.FormImage != null)
             {
                 if (newEmployee.Employee.FormImage.Length > 3145728)
                 {
-                    ModelState.AddModelError("FormImage", "Image size cannot be higher than 3MB");
+                    ModelState.AddModelError("Employee.FormImage", "Image size cannot be higher than 3MB");
+                    return View(newEmployee);
                 }
                 else if (newEmployee.Employee.FormImage.ContentType != "image/jpeg" && newEmployee.Employee.FormImage.ContentType != "image/png")
                 {
-                    ModelState.AddModelError("FormImage", "Invalid image format ");
+                    ModelState.AddModelError("Employee.FormImage", "Invalid image format ");
+                    return View(newEmployee);
                 }
             }
+                
             if (string.IsNullOrEmpty(newEmployee.Employee.Email))
             {
                 TempData["Showtab"] = 4;
                 ModelState.AddModelError("Employee.Email", "Email is required");
                 return View(newEmployee);
             }
+            else if(_context.Employees.FirstOrDefault(x=> x.Email == newEmployee.Employee.Email) != null)
+            {
+                TempData["Showtab"] = 4;
+                ModelState.AddModelError("Employee.Email", "This Email is already attached to a another employee");
+                return View(newEmployee);
+            }
+
             if(newEmployee.SalaryAmount == null)
             {
                 TempData["Showtab"] = 2;
                 ModelState.AddModelError("SalaryAmount", "Salary Amount is required");
                 return View(newEmployee);
             }
+
             if ( newEmployee.SectorId == null  || _context.Sectors.FirstOrDefault(x=> x.Id == newEmployee.SectorId) == null)
             {
                 TempData["Showtab"] = 3;
                 ModelState.AddModelError("SectorId", "Select employee sector");
                 return View(newEmployee);
             }
+
             if( newEmployee.DepartmentId == null ||  _context.Departments.FirstOrDefault(x => x.Id == newEmployee.DepartmentId) == null)
             {
                 TempData["Showtab"] = 3;
                 ModelState.AddModelError("DepartmentId", "Select employee department");
                 return View(newEmployee);
             }
+
             if( newEmployee.JobId == null || _context.Jobs.FirstOrDefault(x => x.Id == newEmployee.JobId) == null)
             {
                 TempData["Showtab"] = 3;
                 ModelState.AddModelError("JobId", "Select employee Job");
                 return View(newEmployee);
             }
+
             if ( newEmployee.JobPositionId == null || _context.JobPositions.FirstOrDefault(x => x.Id == newEmployee.JobPositionId) == null)
             {
                 TempData["Showtab"] = 3;
                 ModelState.AddModelError("JobPositionId", "Select employee Job Position");
                 return View(newEmployee);
             }
+            else if(_context.JobPositions.FirstOrDefault(x=> x.Id == newEmployee.JobPositionId).PostionCount <= _context.Employees.Where(x=> x.JobPositionId == newEmployee.JobPositionId).Count())
+            {
+                TempData["Showtab"] = 3;
+                ModelState.AddModelError("JobPositionId", "This job position is full");
+                return View(newEmployee);
+            }
+
             if(newEmployee.ExpireDate != null && newEmployee.BirthDate != null)
             {
                 if(DateTime.Compare((DateTime)newEmployee.ExpireDate, (DateTime)newEmployee.BirthDate) < 0)
@@ -113,6 +162,7 @@ namespace Black_Mesa_HRMS.Controllers
                     return View(newEmployee);
                 }
             }
+
             if (!ModelState.IsValid)
             {
                 TempData["Showtab"] = 1;
@@ -143,10 +193,25 @@ namespace Black_Mesa_HRMS.Controllers
             signInIdBuilder.Append(randomGen.Next(1000, 99999999).ToString());
 
             string signInId = signInIdBuilder.ToString();
-            while (_context.AppUsers.FirstOrDefault(x => x.SignInID == signInId) != null)
+            while (_context.AppUsers.FirstOrDefault(x => x.UserName == signInId) != null)
             {
                 signInId = signInId.Remove(11);
-                signInId += randomGen.Next(1000, 9999999).ToString();
+                signInId += randomGen.Next(1000, 99999999).ToString();
+            }
+            AppUser appUser = new AppUser
+            {
+                FullName = newEmployee.Employee.Name + " " + newEmployee.Employee.Surname,
+                UserName = signInId,
+                Email = newEmployee.Employee.Email
+            };
+            var result = await _userManager.CreateAsync(appUser, randomGenerator.RandomPasswordBuilder(18));
+            if (newEmployee.DepartmentId == 14)
+            {
+                var resultb = await _userManager.AddToRoleAsync(appUser, "HumanResources");
+            }
+            else
+            {
+                var resultt = await _userManager.AddToRoleAsync(appUser, "Employee");
             }
 
             newEmployee.Employee.Name = newEmployee.Employee.Name.Trim();
@@ -161,21 +226,43 @@ namespace Black_Mesa_HRMS.Controllers
             employee.BirthDate = (DateTime)newEmployee.BirthDate;
             employee.EmployedDate = DateTime.Today.Date;
             employee.NationalityID = (int)newEmployee.NationalityId;
+            employee.AppUser = appUser;
             _context.Employees.Add(employee);
+            Salary salary = new Salary();
+            salary.Employee = employee;
+            salary.Amount = (float)newEmployee.SalaryAmount;
+            _context.Salaries.Add(salary);
             _context.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
 
-            AppUser appUser = new AppUser
+        public ActionResult Edit(int id)
+        {
+            if(_context.Employees.FirstOrDefault(x => x.Id == id) != null)
             {
-                FullName = employee.Name + " " + employee.Surname,
-                SignInID = signInId,
-                UserName = employee.Name + employee.Surname,
-                SignInEmail = signInId + "@gmail.com"
-            };
-
-            var result = await _userManager.CreateAsync(appUser, randomGenerator.RandomPasswordBuilder(18));
-
-
-            return View(newEmployee);
+                Employee dataBaseEmployee = _context.Employees.Include(x => x.JobPosition).ThenInclude(x => x.Job).ThenInclude(x => x.Department).ThenInclude(x => x.Sector).FirstOrDefault(x => x.Id == id);
+                EmployeeFormVM EditModel = new EmployeeFormVM
+                {
+                    Employee = dataBaseEmployee,
+                    BirthDate = dataBaseEmployee.BirthDate,
+                    ExpireDate = dataBaseEmployee.ExpireDate,
+                    JobPositionId = dataBaseEmployee.JobPositionId,
+                    NationalityId = dataBaseEmployee.NationalityID,
+                    JobId = dataBaseEmployee.JobPosition.Job.Id,
+                    DepartmentId = dataBaseEmployee.JobPosition.Job.Department.Id,
+                    SectorId = dataBaseEmployee.JobPosition.Job.Department.Sector.Id
+                };
+                Salary salary = _context.Salaries.FirstOrDefault(x => x.EmployeeId == dataBaseEmployee.Id && x.UntilDate == null);
+                if (salary != null)
+                {
+                    EditModel.SalaryAmount = salary.Amount;
+                }
+                return View(EditModel);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         public ActionResult GetDepartments(int Id)

@@ -8,9 +8,8 @@ namespace Black_Mesa_HRMS.Models
     {
         [StringLength(maximumLength: 50)]
         public string FullName { get; set; }
-        public DateTime LastConnectDate { get; set; }
-        public string SignInID { get; set; }
-        public string SignInEmail { get; set; }
+        public DateTime? LastConnectDate { get; set; }
+        public DateTime? LastPasswordChangeDate { get; set; }
         public bool Disabled { get; set; }
     }
 }

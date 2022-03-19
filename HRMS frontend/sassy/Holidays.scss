@@ -1,0 +1,157 @@
+$base-color : #eae7dc;
+$base-color-light :ghostwhite;
+$base-color-dark : #d8c3a5;
+$text-color-light : #8e8d8a;
+$link-color : #e98074;
+$link-color-active : #e85a4f;
+$notification-color-info: dodgerblue;
+$notification-color-warning : gold	;
+$notification-color-success : seagreen;
+
+@media screen and (max-width: 687px)
+{
+    #Holidays
+    {
+        .Holidays-top-con
+        {
+            align-items: center;
+            flex-direction: column;
+            row-gap: 1rem;
+        }
+    }
+}
+
+@media screen and (max-width: 600px)
+{
+    #Holidays
+    {
+        .Holidays-top-con
+        {
+            .btn
+            {
+                margin: 0px !important;
+            }
+            div 
+            {
+                row-gap: 10px;
+                justify-content: flex-end;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+        }
+    }
+}
+
+#Holidays
+{
+    padding: 1rem;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    min-height: 100%;
+    .Holidays-con
+    {
+        .Holidays-top-con
+        {
+            div 
+            {
+                width: max-content;
+            }
+            span 
+            {
+                font-weight: 500;
+                font-size: 20px;
+                font-family: 'Poppins', sans-serif;
+            }
+            display: flex;
+            margin-bottom: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            .btn
+            {
+                i 
+                {
+                    margin-left: 5px;
+                }
+                background-color: $link-color-active;
+                min-width: fit-content;
+                color: white;
+                font-size: 16px;
+                font-family: 'Poppins', sans-serif;
+                transition: .2s all ;
+                font-weight: 500;
+                transition: .2s all;
+            }
+            .btn:hover 
+            {
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+            .btn:focus
+            {
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+        }
+        .Department-card-con
+        {
+            padding: 1rem;
+            .row
+            {
+                .card-con
+                {
+                    height: 100%;
+                }
+                align-items: stretch;
+                row-gap: 24px;
+                .card
+                {
+                    .card-body
+                    {
+                        font-family: 'Poppins', sans-serif;
+                        .card-title
+                        {
+                            color: $link-color-active;
+                            font-size: 24px;
+                        }
+                        .card-desc
+                        {
+                            font-weight: 400;
+                        }
+                        .card-text
+                        {
+                            font-weight: 400;
+                            .header
+                            {
+                                font-weight: 500;
+                            }
+                        }
+                    }
+                    .row 
+                    {
+                        row-gap: 0px;
+                    }
+                    padding: 0px;
+                    img
+                    {
+                        width: 100%;
+                        max-height: 500px;
+                    }
+                    .card-footer
+                    {
+                        background-color: $link-color-active;
+                        text-align: center;
+                        a 
+                        {
+                            font-family: 'Poppins', sans-serif;
+                            text-decoration: none;
+                            color: white;
+                            i 
+                            {
+                                margin-left: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
