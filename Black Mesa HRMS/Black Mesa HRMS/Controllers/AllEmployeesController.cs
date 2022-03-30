@@ -29,49 +29,74 @@ namespace Black_Mesa_HRMS.Controllers
             _env = env;
             _notyf = notyf;
         }
-        public async Task<ActionResult> Index(AllEmployeesVM allEmployees , int page = 1)
+        public ActionResult Index( string sortBy = "1" , string keyWord = "" , string sortDescending = "False", int page = 1)
         {
+            TempData["sortBy"] = sortBy;
+            TempData["keyWord"] = keyWord;
+            TempData["sortDescending"] = sortDescending;
+
             PageNationVM pageNationVM = new PageNationVM();
             AllEmployeesVM allEmployeesVM = new AllEmployeesVM();
             List<AllEmployeesTM> allEmployeesTMList = new List<AllEmployeesTM>();
             List<Employee> employees = new List<Employee>();
-            if (allEmployees.SortBy == null)
+            
+
+            allEmployeesVM.KeyWord = keyWord;
+            allEmployeesVM.SortBy = Convert.ToInt32(sortBy);
+            allEmployeesVM.SortDescending = Convert.ToBoolean(sortDescending);
+
+            if (allEmployeesVM.SortBy == null)
             {
-                allEmployees.SortBy = 1;
+                allEmployeesVM.SortBy = 1;
             }
 
-            if(string.IsNullOrWhiteSpace(allEmployees.KeyWord))
-            {
-                if(allEmployees.SortDescending == true)
-                {
-                    switch (allEmployees.SortBy)
-                    {
-                        case 1: //id
-                            employees = await _context.Employees.Include(x => x.JobPosition).ThenInclude(x => x.Job).ThenInclude(x => x.Department).ThenInclude(x => x.Sector).OrderByDescending(x => x.Id).Skip((page - 1) * 2).Take(2).ToListAsync();
-                            break;
-                        case 2:
-                            employees = await _context.Employees.Include(x => x.JobPosition).ThenInclude(x => x.Job).ThenInclude(x => x.Department).ThenInclude(x => x.Sector).OrderByDescending(x => x.Id).Skip((page - 1) * 2).Take(2).ToListAsync();
-                            break;
-                        case 3:
-                            employees = await _context.Employees.Include(x => x.JobPosition).ThenInclude(x => x.Job).ThenInclude(x => x.Department).ThenInclude(x => x.Sector).OrderByDescending(x => x.Id).Skip((page - 1) * 2).Take(2).ToListAsync();
-                            break;
-                        case 4:
-                            employees = await _context.Employees.Include(x => x.JobPosition).ThenInclude(x => x.Job).ThenInclude(x => x.Department).ThenInclude(x => x.Sector).OrderByDescending(x => x.Id).Skip((page - 1) * 2).Take(2).ToListAsync();
-                            break;
-                        case 5:
-                            employees = await _context.Employees.Include(x => x.JobPosition).ThenInclude(x => x.Job).ThenInclude(x => x.Department).ThenInclude(x => x.Sector).OrderByDescending(x => x.Id).Skip((page - 1) * 2).Take(2).ToListAsync();
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-            employees = await _context.Employees.Include(x => x.JobPosition).ThenInclude(x => x.Job).ThenInclude(x => x.Department).ThenInclude(x => x.Sector).OrderByDescending(x => x.Id).Skip((page - 1) * 2).Take(2).ToListAsync();
-
+            employees = _context.Employees.Include(x => x.JobPosition).ThenInclude(x => x.Job).ThenInclude(x => x.Department).ThenInclude(x => x.Sector).Include(x => x.JobPosition).ThenInclude(x => x.Position).ToList();
             if (employees.Count == 0)
             {
                 return NotFound();
             }
+
+            if(!string.IsNullOrWhiteSpace(allEmployeesVM.KeyWord))
+            {
+                employees = employees.Where(x => x.Name.Contains(allEmployeesVM.KeyWord)).ToList();
+                if (employees.Count == 0)
+                {
+                    return NotFound();
+                }
+            }
+
+            switch (allEmployeesVM.SortBy)
+            {
+                case 1: //id
+                    employees = employees.OrderBy(x => x.Id).ToList();
+                    break;
+                case 2://Name
+                    employees = employees.OrderBy(x => x.Name).ToList();
+                    break;
+                case 3://Sector
+                    employees = employees.OrderBy(x => x.JobPosition.Job.Department.Sector.Name).ToList();
+                    break;
+                case 4://Department
+                    employees = employees.OrderBy(x => x.JobPosition.Job.Department.Name).ToList();
+                    break;
+                case 5://Job Title
+                    employees = employees.OrderBy(x => x.JobPosition.Job.Name).ToList();
+                    break;
+                case 6://Job Position
+                    employees = employees.OrderBy(x => x.JobPosition.Position.Name).ToList();
+                    break;
+                default:
+                    employees = employees.OrderBy(x => x.Id).ToList();
+                    break;
+            }
+
+            if(allEmployeesVM.SortDescending == true)
+            {
+                employees.Reverse();
+            }
+
+            employees = employees.Skip((page - 1) * 10).Take(10).ToList();
+
             foreach (Employee employee in employees)
             {
                 AllEmployeesTM allEmployeesTM = new AllEmployeesTM
@@ -86,13 +111,16 @@ namespace Black_Mesa_HRMS.Controllers
                 allEmployeesTMList.Add(allEmployeesTM);
             }
             allEmployeesVM.AllEmployeesTMs = allEmployeesTMList;
-            pageNationVM.PageCount = (int)Math.Ceiling(Convert.ToDouble(_context.Employees.Count()) / 2);
+            pageNationVM.PageCount = (int)Math.Ceiling(Convert.ToDouble(allEmployeesVM.AllEmployeesTMs.Count()) / 10);
             pageNationVM.PageSelected = page;
             allEmployeesVM.PageNation = pageNationVM;
-            allEmployeesVM.KeyWord = allEmployees.KeyWord;
-            allEmployeesVM.SortBy = allEmployees.SortBy;
-            allEmployeesVM.SortDescending = allEmployees.SortDescending;
+
             return View(allEmployeesVM);
+        }
+
+        public ActionResult Filter ( AllEmployeesVM allEmployees)
+        {
+            return RedirectToAction("index", new { sortBy = allEmployees.SortBy, keyWord = allEmployees.KeyWord, sortDescending = allEmployees.SortDescending, page = 1 });
         }
     }
 }

@@ -62,7 +62,7 @@ JobInput.addEventListener("change", function (ev) {
 })
 
 async function getDepartments(sectorId) {
-    let url = `GetDepartments/${sectorId}`;
+    let url = `/Employee/GetDepartments/${sectorId}`;
     try {
         let res = await fetch(url, 
             {
@@ -78,7 +78,7 @@ async function getDepartments(sectorId) {
 }
 
 async function getJobs(DepartmentId) {
-    let url = `GetJobs/${DepartmentId}`;
+    let url = `/Employee/GetJobs/${DepartmentId}`;
     try {
         let res = await fetch(url);
         return await res.json();
@@ -88,7 +88,7 @@ async function getJobs(DepartmentId) {
 }
 
 async function getJobPositions(JobId) {
-    let url = `GetJobPositions/${JobId}`;
+    let url = `/Employee/GetJobPositions/${JobId}`;
     try {
         let res = await fetch(url);
         return await res.json();

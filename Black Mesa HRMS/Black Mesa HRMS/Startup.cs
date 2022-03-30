@@ -24,7 +24,7 @@ namespace Black_Mesa_HRMS
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("Default")));
+               options.UseSqlServer(Configuration.GetConnectionString("Default")).EnableSensitiveDataLogging());
             services.AddControllersWithViews().AddNewtonsoftJson(opt =>
             {
                 opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize;
@@ -68,7 +68,7 @@ namespace Black_Mesa_HRMS
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=SignIn}/{id?}");
             });
         }
     }

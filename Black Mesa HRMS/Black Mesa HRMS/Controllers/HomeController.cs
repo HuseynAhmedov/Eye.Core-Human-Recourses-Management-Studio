@@ -44,7 +44,7 @@ namespace Black_Mesa_HRMS.Controllers
             dashBoardVM.EmployeeCount = _context.Employees.ToList().Count;
             dashBoardVM.EmployeeCountNew = _context.Employees.Where(x => x.EmployedDate > DateTime.Now.AddMonths(-1)).ToList().Count;
             dashBoardVM.TodoList = _context.Todos.Where(x => x.EmployeeId == dashBoardVM.Employee.Id).ToList();
-            List<Salary> salariesList = _context.Salaries.Include(x => x.Employee).ToList();
+            List<Salary> salariesList = _context.Salaries.Include(x => x.Employee).Where(x => x.UntilDate == null).ToList();
             foreach (var item in salariesList)
             {
                 if (_context.Jobs.FirstOrDefault(x => x.Id == _context.JobPositions.FirstOrDefault(x => x.Id == item.Employee.JobPositionId).JobId).Type == JobType.Administration)
@@ -74,7 +74,7 @@ namespace Black_Mesa_HRMS.Controllers
         public ActionResult GetSalaryByPercentage()
         {
             SortedList<string, int> percentageList = new SortedList<string, int>();
-            List<Salary> salariesList = _context.Salaries.Include(x => x.Employee).ToList();
+            List<Salary> salariesList = _context.Salaries.Include(x => x.Employee).Where(x => x.UntilDate == null).ToList();
 
             float totalAdministrationSalary = 0;
             float totalMaintenanceSalary = 0;

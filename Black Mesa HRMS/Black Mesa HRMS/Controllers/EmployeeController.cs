@@ -1,4 +1,5 @@
-﻿using Black_Mesa_HRMS.Helper;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Black_Mesa_HRMS.Helper;
 using Black_Mesa_HRMS.Hepler;
 using Black_Mesa_HRMS.Models;
 using Black_Mesa_HRMS.ViewModels;
@@ -23,17 +24,19 @@ namespace Black_Mesa_HRMS.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly DataContext _context;
         private readonly IWebHostEnvironment _env;
+        private readonly INotyfService _notyf;
 
-        public EmployeeController(UserManager<AppUser> userManager, DataContext context, IWebHostEnvironment env )
+        public EmployeeController(UserManager<AppUser> userManager, DataContext context, IWebHostEnvironment env , INotyfService notyf)
         {
             _userManager = userManager;
             _context = context;
             _env = env;
+            _notyf = notyf;
         }
         public ActionResult Index(int id )
         {
             EmployeeFormInfoVM formInfoVM = new EmployeeFormInfoVM();
-            formInfoVM.Employee = _context.Employees.Include(x => x.Nationality).Include(x => x.JobPosition).ThenInclude(x => x.Job).ThenInclude(x => x.Department).ThenInclude(x => x.Sector).FirstOrDefault(x => x.Id == id);
+            formInfoVM.Employee = _context.Employees.AsNoTracking().Include(x => x.Nationality).Include(x => x.JobPosition).ThenInclude(x => x.Job).ThenInclude(x => x.Department).ThenInclude(x => x.Sector).FirstOrDefault(x => x.Id == id);
             if (formInfoVM.Employee == null)
             {
                 return StatusCode(404);
@@ -43,11 +46,20 @@ namespace Black_Mesa_HRMS.Controllers
             {
                 formInfoVM.SalaryAmount = salary.Amount;
             }
-            if (_context.Salaries.Where(x => x.Employee == formInfoVM.Employee && x.UntilDate != null).OrderBy(x => x.UntilDate).First() != null)
+
+            try
             {
-                Salary pastSalary = _context.Salaries.Where(x => x.Employee == formInfoVM.Employee && x.UntilDate != null).OrderBy(x => x.UntilDate).First();
-                formInfoVM.SalaryLastModifiedDate = pastSalary.UntilDate;
+                if (_context.Salaries.Where(x => x.Employee == formInfoVM.Employee && x.UntilDate != null) != null)
+                {
+                    Salary pastSalary = _context.Salaries.Where(x => x.Employee == formInfoVM.Employee && x.UntilDate != null).OrderByDescending(x => x.UntilDate).First();
+                    formInfoVM.SalaryLastModifiedDate = pastSalary.UntilDate;
+                }
             }
+            catch (Exception)
+            {
+                formInfoVM.SalaryLastModifiedDate = null;
+            }
+
             List<Bonus> bonusList = _context.Bonuses.Where(x => x.Employee == formInfoVM.Employee).OrderBy(x => x.DateGiven).ToList();
             if(bonusList.Count() != 0)
             {
@@ -233,6 +245,7 @@ namespace Black_Mesa_HRMS.Controllers
             salary.Amount = (float)newEmployee.SalaryAmount;
             _context.Salaries.Add(salary);
             _context.SaveChanges();
+            _notyf.Success("Employee added successfully", 5);
             return RedirectToAction("Index", "Home");
         }
 
@@ -240,7 +253,7 @@ namespace Black_Mesa_HRMS.Controllers
         {
             if(_context.Employees.FirstOrDefault(x => x.Id == id) != null)
             {
-                Employee dataBaseEmployee = _context.Employees.Include(x => x.JobPosition).ThenInclude(x => x.Job).ThenInclude(x => x.Department).ThenInclude(x => x.Sector).FirstOrDefault(x => x.Id == id);
+                Employee dataBaseEmployee = _context.Employees.AsNoTracking().Include(x => x.JobPosition).ThenInclude(x => x.Job).ThenInclude(x => x.Department).ThenInclude(x => x.Sector).FirstOrDefault(x => x.Id == id);
                 EmployeeFormVM EditModel = new EmployeeFormVM
                 {
                     Employee = dataBaseEmployee,
@@ -263,6 +276,165 @@ namespace Black_Mesa_HRMS.Controllers
             {
                 return NotFound();
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(EmployeeFormVM editEmployee)
+        {
+
+            if (_context.Employees.AsNoTracking().FirstOrDefault(x => x.Id == editEmployee.Employee.Id) == null)
+            {
+                return NotFound();
+            }
+
+            if (string.IsNullOrEmpty(editEmployee.Employee.Email))
+            {
+                TempData["Showtab"] = 4;
+                ModelState.AddModelError("Employee.Email", "Email is required");
+                return View(editEmployee);
+            }
+            else if (_context.Employees.FirstOrDefault(x => x.Email == editEmployee.Employee.Email && x.Id != editEmployee.Employee.Id) != null)
+            {
+                TempData["Showtab"] = 4;
+                ModelState.AddModelError("Employee.Email", "This Email is already attached to a another employee");
+                return View(editEmployee);
+            }
+
+            if (editEmployee.SalaryAmount == null)
+            {
+                TempData["Showtab"] = 2;
+                ModelState.AddModelError("SalaryAmount", "Salary Amount is required");
+                return View(editEmployee);
+            }
+            else if(_context.Salaries.AsNoTracking().FirstOrDefault(x => x.Amount == editEmployee.SalaryAmount && x.EmployeeId == editEmployee.Employee.Id ) == null)
+            {
+                Salary oldSalary = _context.Salaries.FirstOrDefault(x => x.Employee == editEmployee.Employee && x.UntilDate == null);
+                if (oldSalary != null)
+                {
+                    oldSalary.UntilDate = DateTime.UtcNow;
+                }
+                Salary newSalary = new Salary
+                {
+                    Amount = (int)editEmployee.SalaryAmount,
+                    UntilDate = null,
+                    Employee = editEmployee.Employee
+                };
+                _context.Salaries.Add(newSalary);
+            }
+
+            if (editEmployee.SectorId == null || _context.Sectors.FirstOrDefault(x => x.Id == editEmployee.SectorId) == null)
+            {
+                TempData["Showtab"] = 3;
+                ModelState.AddModelError("SectorId", "Select employee sector");
+                return View(editEmployee);
+            }
+
+            if (editEmployee.DepartmentId == null || _context.Departments.FirstOrDefault(x => x.Id == editEmployee.DepartmentId) == null)
+            {
+                TempData["Showtab"] = 3;
+                ModelState.AddModelError("DepartmentId", "Select employee department");
+                return View(editEmployee);
+            }
+
+            if (editEmployee.JobId == null || _context.Jobs.FirstOrDefault(x => x.Id == editEmployee.JobId) == null)
+            {
+                TempData["Showtab"] = 3;
+                ModelState.AddModelError("JobId", "Select employee Job");
+                return View(editEmployee);
+            }
+
+            if (editEmployee.JobPositionId == null || _context.JobPositions.FirstOrDefault(x => x.Id == editEmployee.JobPositionId) == null)
+            {
+                TempData["Showtab"] = 3;
+                ModelState.AddModelError("JobPositionId", "Select employee Job Position");
+                return View(editEmployee);
+            }
+            else if (_context.JobPositions.FirstOrDefault(x => x.Id == editEmployee.JobPositionId).PostionCount <= _context.Employees.Where(x => x.JobPositionId == editEmployee.JobPositionId).Count())
+            {
+                TempData["Showtab"] = 3;
+                ModelState.AddModelError("JobPositionId", "This job position is full");
+                return View(editEmployee);
+            }
+
+            if (editEmployee.ExpireDate != null && editEmployee.BirthDate != null)
+            {
+                if (DateTime.Compare((DateTime)editEmployee.ExpireDate, (DateTime)editEmployee.BirthDate) < 0)
+                {
+                    TempData["Showtab"] = 1;
+                    ModelState.AddModelError("ExpireDate", "Expire Date cannot be earlier than Birth Date");
+                    ModelState.AddModelError("BirthDate", "Birth Date cannot be later than Expire Date");
+                    return View(editEmployee);
+                }
+                if (DateTime.Compare((DateTime)editEmployee.ExpireDate, (DateTime)editEmployee.BirthDate) == 0)
+                {
+                    TempData["Showtab"] = 1;
+                    ModelState.AddModelError("ExpireDate", "Expire Date and Birth Date cannot be at the same date");
+                    ModelState.AddModelError("BirthDate", "Birth Date and Expire Date cannot be at the same date");
+                    return View(editEmployee);
+                }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                TempData["Showtab"] = 1;
+                return View(editEmployee);
+            }
+
+            if (editEmployee.Employee.Name.Length == 1)
+            {
+                TempData["Showtab"] = 1;
+                ModelState.AddModelError("Employee.Name", "Name cannot be 1 letter long");
+                return View(editEmployee);
+            }
+
+            if (editEmployee.Employee.Surname.Length == 1)
+            {
+                TempData["Showtab"] = 1;
+                ModelState.AddModelError("Employee.Surname", "Surname cannot be 1 letter long");
+                return View(editEmployee);
+            }
+
+            if (editEmployee.Employee.FormImage != null)
+            {
+                if (editEmployee.Employee.FormImage.Length > 3145728)
+                {
+                    ModelState.AddModelError("Employee.FormImage", "Image size cannot be higher than 3MB");
+                    return View(editEmployee);
+                }
+                else if (editEmployee.Employee.FormImage.ContentType != "image/jpeg" && editEmployee.Employee.FormImage.ContentType != "image/png")
+                {
+                    ModelState.AddModelError("Employee.FormImage", "Invalid image format");
+                    return View(editEmployee);
+                }
+
+                string imageName = FileManager.Save(_env.WebRootPath, "upload/userImage", editEmployee.Employee.FormImage);
+                if (editEmployee.Employee.Image != null)
+                {
+                    bool imageDeleteResult = FileManager.Delete(_env.WebRootPath, "upload/userImage", editEmployee.Employee.Image);
+                    if (imageDeleteResult != true)
+                    {
+                        FileManager.Delete(_env.WebRootPath, "upload/userImage", imageName);
+                        ModelState.AddModelError("Employee.FormImage", "Something went wrong , please try again");
+                        return View(editEmployee);
+                    }
+                }
+                editEmployee.Employee.Image = imageName;
+            }
+
+            editEmployee.Employee.Name = editEmployee.Employee.Name.Trim();
+            editEmployee.Employee.Surname = editEmployee.Employee.Surname.Trim();
+            editEmployee.Employee.Email = editEmployee.Employee.Email.Trim();
+            editEmployee.Employee.Name = char.ToUpper(editEmployee.Employee.Name[0]) + editEmployee.Employee.Name.Substring(1);
+            editEmployee.Employee.Surname = char.ToUpper(editEmployee.Employee.Surname[0]) + editEmployee.Employee.Surname.Substring(1);
+            editEmployee.Employee.JobPositionId = (int)editEmployee.JobPositionId;
+            editEmployee.Employee.ExpireDate = (DateTime)editEmployee.ExpireDate;
+            editEmployee.Employee.BirthDate = (DateTime)editEmployee.BirthDate;
+            editEmployee.Employee.NationalityID = (int)editEmployee.NationalityId;
+            _context.Employees.Update(editEmployee.Employee);
+            _context.SaveChanges();
+            _notyf.Success("Employee changes has been saved successfully", 5);
+            return RedirectToAction("index", new { id = editEmployee.Employee.Id });
         }
 
         public ActionResult GetDepartments(int Id)

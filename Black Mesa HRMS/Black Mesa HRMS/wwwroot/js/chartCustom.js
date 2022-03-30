@@ -15,7 +15,7 @@ GetGenderCount();
 
 async function GetSalaryByPercentage()
 {
-    const response = await fetch('Home/GetSalaryByPercentage');
+    const response = await fetch('/home/GetSalaryByPercentage');
     const data = await response.json();
 
     values = [];
@@ -54,7 +54,7 @@ async function GetSalaryByPercentage()
 }
 
 async function GetGenderCount() {
-    const response = await fetch('Home/GetGenderCount');
+    const response = await fetch('/home/GetGenderCount');
     const data = await response.json();
 
     values = [];

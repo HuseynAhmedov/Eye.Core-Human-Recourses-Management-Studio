@@ -113,11 +113,11 @@
 }
 
 .form-signin {
-  padding-top: 5rem !important;
+  padding-top: 1rem !important;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url("../image/blackmesa1.jfif");
+  background-image: url("../image/blackmesa6.jpg");
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -170,6 +170,13 @@
 }
 
 .form-signin form button:hover {
+  background-color: #e85a4f;
+  color: white;
+}
+
+.form-signin form button:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
   background-color: #e85a4f;
   color: white;
 }
@@ -1332,7 +1339,7 @@ table {
 
 #AttendanceTable .table-con {
   margin-bottom: 2rem;
-  max-width: 92rem;
+  max-width: calc(100vw - 28rem);
   overflow: scroll;
   overflow-y: hidden;
 }
@@ -2583,7 +2590,7 @@ table {
   margin-bottom: 2rem;
   overflow: scroll;
   overflow-y: hidden;
-  max-width: 92rem;
+  max-width: calc(100vw - 29rem);
 }
 
 #AttendanceTableEdit .table-con .table {
@@ -2631,15 +2638,18 @@ table {
   font-size: 20px;
   padding: 0px 5px;
 }
+
 .invalid-input-text {
     font-weight: 400;
     font-family: 'Poppins', sans-serif;
 }
+
 .page-item.active .page-link {
     color: white !important;
     background-color: #e85a4f !important;
     border-color: #e85a4f !important;
 }
+
 .page-item.disabled .page-link {
     color: #8e8d8a !important;
 }
@@ -2647,5 +2657,4 @@ table {
 #AllEmployee .table-bottom .pagination .page-link:hover {
     border-color: #e85a4f;
 }
-
- /*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style.css.map */

@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "All Employees";
+    
 }
 @model AllEmployeesVM
 <section id="AllEmployee">
@@ -55,19 +56,20 @@
             </div>
             <div class="modal-body">
                 <div class="employee-salary-modal-con">
-                    <form id="modal-details" method="post" asp-action="index">
+                    <form id="modal-details" method="post" asp-action="filter">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" asp-for="KeyWord">
-                            <label for="floatingInput">ID or FullName</label>
+                            <label for="floatingInput">Name</label>
                         </div>
                         <span class="text-danger invalid-input-text mt-1" asp-validation-for="KeyWord"></span>
                         <div class="form-floating">
                             <select class="form-select" asp-for="SortBy">
                                 <option value="1">ID</option>
-                                <option value="2">FullName</option>
-                                <option value="3">Department</option>
-                                <option value="4">Job Title</option>
-                                <option value="5">Job Position</option>
+                                <option value="2">Name</option>
+                                <option value="3">Sector</option>
+                                <option value="4">Department</option>
+                                <option value="5">Job Title</option>
+                                <option value="6">Job Position</option>
                             </select>
                             <label asp-for="SortBy">Sort By</label>
                         </div>

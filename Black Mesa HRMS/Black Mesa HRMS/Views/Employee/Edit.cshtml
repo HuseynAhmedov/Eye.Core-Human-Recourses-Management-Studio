@@ -47,10 +47,13 @@
 }
 @model EmployeeFormVM
 <section id="UserEdit">
-    <form method="post" asp-action="create" class="user-edit-form " id="UserEditForm" enctype="multipart/form-data">
+    <form method="post" asp-action="edit" class="user-edit-form " id="UserEditForm" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Employee.Id" />
+        <input type="hidden" asp-for="Employee.Image"/>
         <div class="user-profile-con">
             <div class="user-profile-top-con">
-                <span>New Employee</span>
+                <span>Edit Employee</span>
+                <h1></h1>
             </div>
             <div class="user-profile-mid-con">
                 <div class="row">
@@ -88,7 +91,14 @@
                                 <span class="text-danger invalid-input-text mt-1" asp-validation-for="Employee.Gender"></span>
                             </div>
                             <div class="col d-flex justify-content-md-end justify-content-center image-con">
-                                <img src="~/upload/default/userDefaultImage.png" id="PreviewImage" class="col-sm-12" alt="user image">
+                                @if (string.IsNullOrEmpty(Model.Employee.Image) || string.IsNullOrWhiteSpace(Model.Employee.Image))
+                                {
+                                    <img src="~/upload/default/noimage.jpeg" class="col-sm-12" alt="user image">
+                                }
+                                else
+                                {
+                                    <img src="~/upload/userImage/@Model.Employee.Image" class="col-sm-12" alt="user image">
+                                }
                             </div>
                         </div>
                     </div>

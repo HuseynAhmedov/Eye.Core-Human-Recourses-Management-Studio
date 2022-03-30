@@ -57,17 +57,17 @@
 
 <nav>
     <ul class="pagination">
-        <li class="page-item @(startPage==currentPage?"disabled":"")"><a class="page-link" asp-action="index" asp-route-page="@startPage"><i class="fa-solid fa-angles-left"></i></a></li>
-        <li class="page-item @(startPage==currentPage?"disabled":"")"><a class="page-link" asp-action="index" asp-route-page="@currentPageBefore"><i class="fa-solid fa-angle-left"></i></a></li>
+        <li class="page-item @(startPage==currentPage?"disabled":"")"><a class="page-link" asp-action="index" asp-route-page="@startPage" asp-route-keyWord="@TempData["keyWord"]" asp-route-sortBy="@TempData["sortBy"]" asp-route-sortDescending="@TempData["sortDescending"]"><i class="fa-solid fa-angles-left"></i></a></li>
+        <li class="page-item @(startPage==currentPage?"disabled":"")"><a class="page-link" asp-action="index" asp-route-page="@currentPageBefore" asp-route-keyWord="@TempData["keyWord"]" asp-route-sortBy="@TempData["sortBy"]" asp-route-sortDescending="@TempData["sortDescending"]"><i class="fa-solid fa-angle-left"></i></a></li>
         @for (int i = 1; i <= Model.PageCount; i++)
         {
             if (i == currentPage || i == currentPageBeforePlus || i == currentPageAfterPlus || i == currentPageBefore || i == currentPageAfter)
             {
-                <li class="page-item @(i==currentPage?"active":"")"><a class="page-link @(i==currentPage?"active":"")" asp-action="index" asp-route-page="@i">@i</a></li>
+                <li class="page-item @(i==currentPage?"active":"")"><a class="page-link @(i==currentPage?"active":"")" asp-action="index" asp-controller="AllEmployees" asp-route-page="@i" asp-route-keyWord="@TempData["keyWord"]" asp-route-sortBy="@TempData["sortBy"]" asp-route-sortDescending="@TempData["sortDescending"]">@i</a></li>
             }
         }
-        <li class="page-item @(endPage==currentPage?"disabled":"")"><a class="page-link" asp-action="index" asp-route-page="@currentPageAfter"><i class="fa-solid fa-angle-right"></i></a></li>
-        <li class="page-item @(endPage==currentPage?"disabled":"")"><a class="page-link" asp-action="index" asp-route-page="@endPage"><i class="fa-solid fa-angles-right"></i></a></li>
+        <li class="page-item @(endPage==currentPage?"disabled":"")"><a class="page-link" asp-action="index" asp-route-page="@currentPageAfter" asp-route-keyWord="@TempData["keyWord"]" asp-route-sortBy="@TempData["sortBy"]" asp-route-sortDescending="@TempData["sortDescending"]"><i class="fa-solid fa-angle-right"></i></a></li>
+        <li class="page-item @(endPage==currentPage?"disabled":"")"><a class="page-link" asp-action="index" asp-route-page="@endPage" asp-route-keyWord="@TempData["keyWord"]" asp-route-sortBy="@TempData["sortBy"]" asp-route-sortDescending="@TempData["sortDescending"]"><i class="fa-solid fa-angles-right"></i></a></li>
 
     </ul>
 </nav>

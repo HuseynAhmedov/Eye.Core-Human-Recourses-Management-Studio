@@ -56,7 +56,7 @@
 
 #AttendanceTable .table-con {
   margin-bottom: 2rem;
-  max-width: 92rem;
+  max-width: calc(100vw - 28rem);
   overflow: scroll;
   overflow-y: hidden;
 }

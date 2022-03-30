@@ -276,7 +276,7 @@
   margin-bottom: 2rem;
   overflow: scroll;
   overflow-y: hidden;
-  max-width: 92rem;
+  max-width: calc(100vw - 29rem);
 }
 
 #AttendanceTableEdit .table-con .table {
