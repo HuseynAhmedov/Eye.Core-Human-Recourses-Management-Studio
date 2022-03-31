@@ -1,8 +1,7 @@
 ﻿
-@{
-    ViewData["Title"] = "Index";
-}
-
+@{ ViewData["Title"] = "Index";
+                string fullName = ""; }
+@model ContactVM
 <section id="AllEmployee">
     <section class="all-employee-con">
         <div class="table-top">
@@ -22,17 +21,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>101</td>
-                        <td>Gordon Freeman</td>
-                        <td>Gordon.Free@mail.com</td>
-                        <td>012123456</td>
-                        <td>0501234567</td>
-                        <td>
-                            <a href="#" type="button" class=" btn table-btn">Profile</i></a>
-                        </td>
-                    </tr>
+                    @foreach (Employee item in Model.Contacts)
+                    {
+                        fullName = item.Name + " " + item.Surname;
+        <tr>
+            <td scope="row">@Model.Contacts.IndexOf(item)</td>
+            <td>@item.Id</td>
+            <td>@fullName</td>
+            <td>@item.Email</td>
+            <td>@item.PhoneNumber</td>
+            <td>@item.HomeNumber</td>
+            <td>
+                <a asp-action="Index" asp-controller="Employee" asp-route-id="@item.Id" type="button" class=" btn table-btn">Profile</a>
+            </td>
+        </tr>}
+
                 </tbody>
             </table>
         </div>

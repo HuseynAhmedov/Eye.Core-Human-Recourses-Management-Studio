@@ -1,107 +1,36 @@
 ﻿
-@{
-    ViewData["Title"] = "Index";
-}
-
+@{ ViewData["Title"] = "Index"; }
+@model DepartmentVM
 <section id="Departments">
     <div class="Departments-con">
         <div class="Departments-top-con">
             <span>Departments</span>
-            <form class="d-flex search-form">
-                <input class=" form-control me-2" type="search" placeholder="Name or ID" aria-label="Search">
+            <form class="d-flex search-form" asp-action="Filter" method="post">
+                <input class=" form-control me-2" type="search" placeholder="Department Name" asp-for="KeyWord" aria-label="Search">
                 <button class="btn" type="submit">Search<i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>
         <div class="Department-card-con">
             <div class="row">
-                <div class="card-con  col-md-12 col-xxl-6">
-                    <div class="card ">
-                        <div class="row g-0">
-                            <div class="col-12">
-                                <img src="./image/Hazard_Course.jpg" class="img-fluid rounded-top" alt="department image">
-                            </div>
-                            <div class="col-12">
-                                <div class="card-body">
-                                    <h5 class="card-title">Sector A Training Facility</h5>
-                                    <p class="card-desc">ector A contains the separate Hazard Courses used for training scientists, predominantly to the use of the HEV Suit and security guards</p>
-                                    <p class="card-text"><span class="header">Head of Staff : </span>Gordon Freeman</p>
-                                    <p class="card-text"><span class="header">Employee Count : </span>999</p>
-                                    <p class="card-text"><span class="header">Avg. Salary : </span>999 $</p>
-                                    <p class="card-text"><span class="header">Total Salary : </span>999 $</p>
-                                </div>
-                                <div class="card-footer">
-                                    <a href="#" type="button">All Department Employees <i class="fa-solid fa-angles-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                @foreach (DepartmentTM item in Model.Departments)
+                {
+    <div class="card-con  col-md-12 col-xxl-6">
+        <div class="card ">
+            <div class="row g-0">
+                <div class="col-12">
+                    <div class="card-body">
+                        <h5 class="card-title">Sector @item.SectorName Department @item.Department.Name</h5>
+                        <p class="card-text"><span class="header">Employee Count : </span>@item.EmployeeCount $</p>
+                        <p class="card-text"><span class="header">Avg. Salary : </span>@item.AvgSalary $</p>
+                        <p class="card-text"><span class="header">Total Salary : </span>@item.TotalSalary $</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" type="button">All Department Employees <i class="fa-solid fa-angles-right"></i></a>
                     </div>
                 </div>
-                <div class="card-con col-md-12 col-xxl-6">
-                    <div class="card ">
-                        <div class="row g-0">
-                            <div class="col-12">
-                                <img src="./image/sectorB.jfif" class="img-fluid rounded-top" alt="department image">
-                            </div>
-                            <div class="col-12">
-                                <div class="card-body">
-                                    <h5 class="card-title">Sector B Coolant Reserve</h5>
-                                    <p class="card-text">The Coolant Reserve stores the industrial coolant used to maintain Black Mesa's thousands of computers and machines.</p>
-                                    <p class="card-text"><span class="header">Head of Staff : </span>Randy Pitchford</p>
-                                    <p class="card-text"><span class="header">Employee Count : </span>999</p>
-                                    <p class="card-text"><span class="header">Avg. Salary : </span>999</p>
-                                    <p class="card-text"><span class="header">Total Salary : </span>999</p>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <a href="#" type="button">All Department Employees <i class="fa-solid fa-angles-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-con  col-md-12 col-xxl-6">
-                    <div class="card ">
-                        <div class="row g-0">
-                            <div class="col-12">
-                                <img src="./image/Hazard_Course.jpg" class="img-fluid rounded-top" alt="department image">
-                            </div>
-                            <div class="col-12">
-                                <div class="card-body">
-                                    <h5 class="card-title">Sector A Training Facility</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><span class="header">Head of Staff : </span>Gordon Freeman</p>
-                                    <p class="card-text"><span class="header">Employee Count : </span>999</p>
-                                    <p class="card-text"><span class="header">Avg. Salary : </span>999</p>
-                                    <p class="card-text"><span class="header">Total Salary : </span>999</p>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <a href="#" type="button">All Department Employees <i class="fa-solid fa-angles-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-con  col-md-12 col-xxl-6">
-                    <div class="card ">
-                        <div class="row g-0">
-                            <div class="col-12">
-                                <img src="./image/Hazard_Course.jpg" class="img-fluid rounded-top" alt="department image">
-                            </div>
-                            <div class="col-12">
-                                <div class="card-body">
-                                    <h5 class="card-title">Sector A Training Facility</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><span class="header">Head of Staff : </span>Gordon Freeman</p>
-                                    <p class="card-text"><span class="header">Employee Count : </span>999</p>
-                                    <p class="card-text"><span class="header">Avg. Salary : </span>999</p>
-                                    <p class="card-text"><span class="header">Total Salary : </span>999</p>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <a href="#" type="button">All Department Employees <i class="fa-solid fa-angles-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </div>
+    </div>}
             </div>
         </div>
     </div>
