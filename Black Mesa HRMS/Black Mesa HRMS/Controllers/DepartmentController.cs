@@ -32,6 +32,7 @@ namespace Black_Mesa_HRMS.Controllers
         {
             DepartmentVM departmentVM = new DepartmentVM();
             PageNationVM pageNation = new PageNationVM();
+            List<Salary> salariesDepartment = new List<Salary>();
             List<Department> dbDepartments = _context.Departments.Include(x => x.Sector).ToList();
             List<Employee> dbEmployees = _context.Employees.Include(x => x.JobPosition).ThenInclude(x => x.Job).ThenInclude(x => x.Department).ToList();
             List<Salary> dbSalaries = _context.Salaries.Include(x => x.Employee).ThenInclude(x => x.JobPosition).ThenInclude(x => x.Job).ThenInclude(x => x.Department).ToList();
@@ -55,10 +56,10 @@ namespace Black_Mesa_HRMS.Controllers
                     departmentTM.EmployeeCount = dbEmployees.Where(x => x.JobPosition.Job.Department.Id == department.Id).Count();
                 }
 
-                if (dbSalaries.Where(x => x.Employee.JobPosition.Job.Department.Id == department.Id) != null)
+                if (dbSalaries.Where(x => x.Employee.JobPosition.Job.Department.Id == department.Id && x.UntilDate == null).Count() != 0)
                 {
-                    dbSalaries = dbSalaries.Where(x => x.Employee.JobPosition.Job.Department.Id == department.Id).ToList();
-                    dbSalaries.ForEach(x => departmentTM.TotalSalary += x.Amount);
+                    salariesDepartment = dbSalaries.Where(x => x.Employee.JobPosition.Job.Department.Id == department.Id && x.UntilDate == null ).ToList();
+                    salariesDepartment.ForEach(x => departmentTM.TotalSalary += x.Amount);
                 }
 
                 if (departmentTM.TotalSalary != 0 && departmentTM.EmployeeCount != 0)

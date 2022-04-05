@@ -14,23 +14,24 @@
             <div class="row">
                 @foreach (DepartmentTM item in Model.Departments)
                 {
-    <div class="card-con  col-md-12 col-xxl-6">
-        <div class="card ">
-            <div class="row g-0">
-                <div class="col-12">
-                    <div class="card-body">
-                        <h5 class="card-title">Sector @item.SectorName Department @item.Department.Name</h5>
-                        <p class="card-text"><span class="header">Employee Count : </span>@item.EmployeeCount $</p>
-                        <p class="card-text"><span class="header">Avg. Salary : </span>@item.AvgSalary $</p>
-                        <p class="card-text"><span class="header">Total Salary : </span>@item.TotalSalary $</p>
+                    <div class="card-con  col-md-12 col-xxl-6">
+                        <div class="card ">
+                            <div class="row g-0">
+                                <div class="col-12">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Sector @item.SectorName Department @item.Department.Name</h5>
+                                        <p class="card-text"><span class="header">Employee Count : </span>@item.EmployeeCount </p>
+                                        <p class="card-text"><span class="header">Avg. Salary : </span>@item.AvgSalary $</p>
+                                        <p class="card-text"><span class="header">Total Salary : </span>@item.TotalSalary $</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <a asp-action="Index" asp-controller="AllEmployees" asp-route-departmentId="@item.Department.Id" asp-route-requestFilter="@true" type="button">All Department Employees <i class="fa-solid fa-angles-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <a href="#" type="button">All Department Employees <i class="fa-solid fa-angles-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>}
+                }
             </div>
         </div>
     </div>

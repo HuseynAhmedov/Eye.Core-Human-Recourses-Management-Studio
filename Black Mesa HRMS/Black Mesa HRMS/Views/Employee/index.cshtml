@@ -93,7 +93,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Date For</th>
-                                                    @for (int i = 1; i < DateTime.DaysInMonth(Model.AttendanceDateFor.Year, Model.AttendanceDateFor.Month); i++)
+                                                    @for (int i = 1; i <= DateTime.DaysInMonth(Model.AttendanceDateFor.Year, Model.AttendanceDateFor.Month); i++)
                                                     {
                                                         <th scope="col">@i</th>
                                                     }
@@ -104,8 +104,11 @@
                                                     <td scope="col">
                                                         @Model.AttendanceDateFor.ToString().Substring(0, 10)
                                                     </td>
-                                                    @{ DateTime dateFilter = Model.AttendanceDateFor.AddDays(-Model.AttendanceDateFor.Day); int j = 0; int absensCount = 0; }
-                                                    @for (int i = 1; i < DateTime.DaysInMonth(Model.AttendanceDateFor.Year, Model.AttendanceDateFor.Month); i++)
+                                                    @{ DateTime dateFilter = Model.AttendanceDateFor.AddDays(-Model.AttendanceDateFor.Day); 
+                                                       int j = 0; 
+                                                       int absensCount = 0; 
+                                                     }
+                                                    @for (int i = 1; i <= DateTime.DaysInMonth(Model.AttendanceDateFor.Year, Model.AttendanceDateFor.Month); i++)
                                                     {
                                                         dateFilter = dateFilter.AddDays(1);
 

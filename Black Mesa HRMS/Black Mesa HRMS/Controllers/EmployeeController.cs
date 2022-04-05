@@ -231,6 +231,7 @@ namespace Black_Mesa_HRMS.Controllers
             newEmployee.Employee.Email = newEmployee.Employee.Email.Trim();
             newEmployee.Employee.Name = char.ToUpper(newEmployee.Employee.Name[0]) + newEmployee.Employee.Name.Substring(1);
             newEmployee.Employee.Surname = char.ToUpper(newEmployee.Employee.Surname[0]) + newEmployee.Employee.Surname.Substring(1);
+            
             Employee employee = newEmployee.Employee;
             if (newEmployee.Employee.FormImage != null) employee.Image = FileManager.Save(_env.WebRootPath, "upload/userImage", newEmployee.Employee.FormImage);
             employee.JobPositionId =(int)newEmployee.JobPositionId;
@@ -240,12 +241,15 @@ namespace Black_Mesa_HRMS.Controllers
             employee.NationalityID = (int)newEmployee.NationalityId;
             employee.AppUser = appUser;
             _context.Employees.Add(employee);
+
             Salary salary = new Salary();
             salary.Employee = employee;
             salary.Amount = (float)newEmployee.SalaryAmount;
             _context.Salaries.Add(salary);
             _context.SaveChanges();
+
             _notyf.Success("Employee added successfully", 5);
+
             return RedirectToAction("Index", "Home");
         }
 

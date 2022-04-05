@@ -29,8 +29,9 @@ namespace Black_Mesa_HRMS.Controllers
             _env = env;
             _notyf = notyf;
         }
-        public ActionResult Index( string sortBy = "1" , string keyWord = "" , string sortDescending = "False", int page = 1)
+        public ActionResult Index( string sortBy = "1" , string keyWord = "" , string sortDescending = "False", int page = 1 , int departmentId = 0 , bool requestFilter = false)
         {
+            
             TempData["sortBy"] = sortBy;
             TempData["keyWord"] = keyWord;
             TempData["sortDescending"] = sortDescending;
@@ -54,6 +55,18 @@ namespace Black_Mesa_HRMS.Controllers
             if (employees.Count == 0)
             {
                 return NotFound();
+            }
+
+            if(requestFilter == true)
+            {
+                if(_context.Departments.FirstOrDefault(x => x.Id == departmentId) !=null)
+                {
+                    employees = employees.Where(x => x.JobPosition.Job.Department.Id == departmentId).ToList();
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
 
             if(!string.IsNullOrWhiteSpace(allEmployeesVM.KeyWord))
@@ -94,6 +107,8 @@ namespace Black_Mesa_HRMS.Controllers
             {
                 employees.Reverse();
             }
+
+            
 
             employees = employees.Skip((page - 1) * 10).Take(10).ToList();
 

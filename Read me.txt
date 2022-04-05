@@ -4,6 +4,5 @@ Login info to test the studio  :
 
 -----------------------
 project is not fully compleate 
-some features will be disabled when I show off the project
 
-Black Mesa HRMS ver 1.95 beta build 3/21/2022
+Black Mesa HRMS ver 1.97 beta build 3/31/2022

@@ -49,7 +49,7 @@ namespace Black_Mesa_HRMS.Controllers
                 return StatusCode(404);
             }
             formInfoVM.SalaryAmount = _context.Salaries.FirstOrDefault(x => x.Employee == formInfoVM.Employee && x.UntilDate == null).Amount;
-            if (_context.Salaries.Where(x => x.Employee == formInfoVM.Employee && x.UntilDate != null).OrderBy(x => x.UntilDate).First() != null)
+            if (_context.Salaries.Where(x => x.Employee.Id == formInfoVM.Employee.Id).Where(x=> x.UntilDate != null).Count() != 0)
             {
                 Salary pastSalary = _context.Salaries.Where(x => x.Employee == formInfoVM.Employee && x.UntilDate != null).OrderBy(x => x.UntilDate).First();
                 formInfoVM.SalaryLastModifiedDate = pastSalary.UntilDate;
