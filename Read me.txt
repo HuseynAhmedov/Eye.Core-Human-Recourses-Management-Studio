@@ -5,4 +5,17 @@ Login info to test the studio  :
 -----------------------
 project is not fully compleate 
 
-Black Mesa HRMS ver 1.97 beta build 3/31/2022
+what is done :
+-add / edit employee 
+-sign in / sign out 
+-forgot passoword 
+-first time sign in
+-all employees 
+-filter all employees
+-departmets 
+-contacts
+-edit / view profile
+-frontend is fully compleate for HR view
+
+-----------------------
+Eye.Core HRMS ver 1.97 beta build 04/05/2022
